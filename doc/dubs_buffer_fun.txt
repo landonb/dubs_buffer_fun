@@ -20,7 +20,7 @@ This plugin defines a few automatic commands:
 
 - Enable `hidden` so buffers are not unloaded when abandoned.
 
-Project page: https://github.com/landonb/dubs_
+Project page: https://github.com/landonb/dubs_buffer_fun
 
 ==============================================================================
 2. Buffer-Related Commands		*dubs-bufff-buffer-cmds*
