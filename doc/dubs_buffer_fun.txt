@@ -1,0 +1,126 @@
+*dubs_buffer_fun.txt*	For Vim version 7.4.	Last change: 2015 Jan 23
+
+Dubsacks Vim -- Buffer and Window Commands and Features~
+
+BUFFER AND WINDOW COMMANDS		*dubs-buffer-fun*
+
+1. About This Plugin			|dubs-bufff-about|
+2. Buffer-Related Commands		|dubs-bufff-buffer-cmds|
+3. Window-Related Commands		|dubs-bufff-window-cmds|
+
+==============================================================================
+1. About This Plugin			*dubs-bufff-about*
+
+Buffer and window navigation features, and ctags!
+
+This plugin defines a few automatic commands:
+
+- Automatically jump to last known cursor position when
+  opening a file.
+
+- Enable `hidden` so buffers are not unloaded when abandoned.
+
+Project page: https://github.com/landonb/dubs_
+
+==============================================================================
+2. Buffer-Related Commands		*dubs-bufff-buffer-cmds*
+
+Walking the buffer chain~
+
+				*<F2>*
+<F2>			Toggle MRU Buffer. Load the previously-loaded
+			buffer; used to quickly switch between two buffers.
+			
+				*<Ctrl-J>* *<C-J>*
+<Ctrl-J>		Load previous buffer from buffer history list.
+			Use to walk the buffer history backwards.
+
+				*<Ctrl-K>* *<C-K>*
+<Ctrl-K>		Load next buffer from buffer history list.
+			Use to walk the buffer history forwards.
+
+				*<Ctrl-Tab>* *<C-Tab>*
+<Ctrl-Tab>		Walk BufList forward. This walk buffers in the
+			order that they were loaded.
+
+				*<Ctrl-Shift-Tab>* *<C-S-Tab>*
+<Ctrl-Shift-Tab>	Walk BufList backward. This walk buffers in the
+			order that they were loaded.
+
+Find buffers by name~
+
+				*dubs:b*
+:b {filename}		Switch to buffer by (partial) filename.
+
+				*dubs:ls*
+:ls 			List buffer numbers.
+
+__				c_<Shift-F2>* *c_<S-F2>*
+c_<Shift-F2>		Show buffer list and prompt for number or (partial) name.
+			Calls *:ls<CR>:b<Space>*
+
+				*__*
+__			A simple buffer list prompt similar to previous.
+
+				*<Shift-Alt-2>_* *<M-@>_* *<S-M-2>_* *<S-A-2>_* :TMiniBufExplorer :MBEToggle
+<Shift-Alt-2>		Toggle MiniBufExplorer.
+
+==============================================================================
+3. Window-Related Commands		*dubs-bufff-window-cmds*
+
+Custom Dubsacks Window Command Mappings~
+
+				*<Ctrl-Shift-Up>* *<C-S-Up>* *<C-W>W*
+<Ctrl-Shift-Up>		Move Cursor to Window Above or Leftward.
+
+				*<Ctrl-Shift-Down>* *<C-S-Down>* *<C-W>w*
+<Ctrl-Shift-Down>	Move Cursor to Window to Right or Below.
+
+Common Standard Vim Window Commands~
+
+Note: These commands are standard to Vim; this is just a list
+      of window commands that complement Dubsacks well.
+
+				*<Alt-w>c* *<M-w>c*
+<Alt-w>c		Close Window.
+
+				*<Alt-w>o* *<M-w>o*
+<Alt-w>o		"Only" Window.
+
+				*<Alt-w>p* *<M-w>p*
+<Alt-w>p		Horizontal Split Window.
+
+				*<Alt-w>s* *<M-w>s*
+<Alt-w>s		Vertical Split Window.
+
+				*<Ctrl-w><Shift-L>* *<C-w><S-L>*
+<Ctrl-w><Shift-L>	Move Window to the Left.
+
+				*<Ctrl-w><Shift-R>* *<C-w><S-R>*
+<Ctrl-w><Shift-R>	Move Window to the Right.
+
+				*<Ctrl-w><Shift-J>* *<C-w><S-J>*
+<Ctrl-w><Shift-J>	Move Window Down.
+
+				*<Ctrl-w><Shift-K>* *<C-w><S-K>*
+<Ctrl-w><Shift-K>	Move Window Up.
+
+Dubsacks Tab Commands~
+
+				*<Alt-PageUp>* *<M-PageUp>*
+<Alt-PageUp>		Switch Tabs
+			Changes to the next tab.
+			I [lb] almost never uses tabs in Vim -- the exception being ``:TabMessage``.
+			But if you use tabs, ``<Alt-PageUp>`` and ``<Alt-PageDown>``
+			can be used to iterate through the list of tabs.
+
+				*<Alt-PageDown>* *<M-PageDown>*
+<Alt-PageDown>		Switch Tabs
+			The opposite of ``<Alt-PageUp>``; changes to previous tab.
+
+Other commands~
+
+				*\te*
+\te			Tetris.
+
+ vim:tw=78:ts=8:ft=help:norl:
