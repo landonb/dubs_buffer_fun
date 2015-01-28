@@ -13,7 +13,29 @@ This plugin defines a few automatic commands:
 
 - Enable ``hidden`` so buffers are not unloaded when abandoned.
 
-Project page: https://github.com/landonb/dubs_buffer_fun
+Installation
+------------
+
+Standard Pathogen installation:
+
+.. code-block:: bash
+
+   cd ~/.vim/bundle/
+   git clone https://github.com/landonb/dubs_buffer_fun.git
+
+Or, Standard submodule installation:
+
+.. code-block:: bash
+
+   cd ~/.vim/bundle/
+   git submodule add https://github.com/landonb/dubs_buffer_fun.git
+
+Online help:
+
+.. code-block:: vim
+
+   :Helptags
+   :help dubs-buffer-fun
 
 Buffer and Window Commands
 --------------------------
