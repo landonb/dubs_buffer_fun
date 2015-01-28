@@ -58,14 +58,12 @@ in the history stack.
                                                             Loads the last loaded buffer in the current window (think ``:e #``).
                                                             I.e., if you hit ``<F2>`` twice, you'll be looking at the same buffer.
 ---------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``<Ctrl-J>``                 Traverse Buffer History       Traverses the buffer history forwards;
-                                                            much more powerful than ``<F2>`` since it ignores the Project
-                                                            buffer.
-                                                            Hint: If you find yourself down a rabbit hole and can't remember
-                                                            what you were doing, hit ``<Ctrl-J>`` to crawl out of it.
+ ``<Ctrl-J>``                 Traverse Buffer History       Traverses the buffer history backwards.
+                                                            Hint: If you find yourself down a rabbit hole, opening file after file,
+                                                            and you can't remember what you were doing, hit ``<Ctrl-J>`` to crawl out of it.
                                                             Caveat: Splitting and Closing windows can mess up the buffer history, 'natch.
 ---------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``<Ctrl-K>``                 Reverse Traverse History      Traverses the buffer history backwards; opposite of ``<Ctrl-J>``.
+ ``<Ctrl-K>``                 Forward Traverse History      Traverses the buffer history forwards; opposite of ``<Ctrl-J>``.
 ---------------------------  ----------------------------  ------------------------------------------------------------------------------
  ``<Ctrl-Tab>``               Traverse BufList              ``<Ctrl-Tab>`` and ``<Ctrl-Shift-Tab>``
                                                             are similar to ``<Ctrl-J>`` and ``<Ctrl-K>``
