@@ -1,11 +1,12 @@
 " File: dubs_buffer_fun.vim
 " Author: Landon Bouma (landonb &#x40; retrosoft &#x2E; com)
-" Last Modified: 2015.01.27
+" Last Modified: 2017.03.28
 " Project Page: https://github.com/landonb/dubs_buffer_fun
 " Summary: Buffer and window navigation features, and ctags!
 " License: GPLv3
+" vim:tw=0:ts=2:sw=2:et:norl:
 " -------------------------------------------------------------------
-" Copyright © 2009, 2015 Landon Bouma.
+" Copyright © 2009, 2015, 2017 Landon Bouma.
 " 
 " This file is part of Dubsacks.
 " 
@@ -170,6 +171,9 @@ function! s:SimplBuffrListr()
 endfunction
 " Map a double-underscore to the simpl(e) 
 " buffe(r) liste(r)
+" EXPLAIN/2017-03-28: function defined as s:SimplBuffrListr,
+"                                  not as <SID>SimplBuffrListr,
+"                                  so how does this work?
 map <silent> __ :call <SID>SimplBuffrListr()<CR>
 " NOTE to the wise: tabs? tabs?! who needs tabs!!?
 "      buflists? buflists?! who needs buflists!!?
@@ -313,10 +317,10 @@ onoremap <C-S-Tab> <C-C>:call <SID>BufNext_SkipSpecialBufs(-1)<CR>
 snoremap <C-S-Tab> <C-C>:call <SID>BufNext_SkipSpecialBufs(-1)<CR>
 
 "map <silent> <unique> <script> 
-"  \ <Plug>BufNextNormal 
+"  \ <Plug>DubsBufferFun_BufNextNormal 
 "  \ :call <SID>BufNext_SkipSpecialBufs(1)<CR>
 "map <silent> <unique> <script> 
-"  \ <Plug>BufPrevNormal 
+"  \ <Plug>DubsBufferFun_BufPrevNormal 
 "  \ :call <SID>BufNext_SkipSpecialBufs(-1)<CR>
 ""   2. Thunk the <Plug>
 function s:BufNext_SkipSpecialBufs(direction)
@@ -493,8 +497,8 @@ autocmd VimEnter * nested
 ""     imap <M-@> <C-O><Plug>TMiniBufExplorer
 "     nmap <M-@> <Plug>MBEToggle
 "     imap <M-@> <C-O><Plug>MBEToggle
-"     "cmap <M-&> <C-C><Plug>HCT_ToggleLookup<ESC>
-"     "omap <M-&> <C-C><Plug>HCT_ToggleLookup<ESC>
+"     "cmap <M-&> <C-C><Plug>DubsHtmlEntities_ToggleLookup<ESC>
+"     "omap <M-&> <C-C><Plug>DubsHtmlEntities_ToggleLookup<ESC>
 
 " SYNC_ME: Dubsacks' <M-????> mappings are spread across plugins. [M-S-2]
 "nmap <M-@> :call ToggleMiniBufExplorer()<CR>
@@ -518,17 +522,23 @@ imap <M-@> <C-O>:ToggleMiniBufExplorer<CR>
 " See dubsacks.vim, which inits cols,ll to 111,44
 " FIXME 111,44 magic numbers, also shared w/ dubsacks.vim
 " SYNC_ME: Dubsacks' <M-????> mappings are spread across plugins. [M-S-4]
-""nmap <silent> <M-$> <Plug>ToggleFullscreen_Hack
-""imap <silent> <M-$> <C-O><Plug>ToggleFullscreen_Hack
+""nmap <silent> <M-$> <Plug>DubsBufferFun_ToggleFullscreen_Hack
+""imap <silent> <M-$> <C-O><Plug>DubsBufferFun_ToggleFullscreen_Hack
 " 2011.05.20: Disabling. It sucks at what it does.
-"map <F11> <Plug>ToggleFullscreen_Hack
+"map <F11> <Plug>DubsBufferFun_ToggleFullscreen_Hack
 
 " FIXME I don't use this fcn.: it's not very elegant. I just 
 "       double-click the titlebar instead and let Gnome handle it... 
 
+" 2017-03-28: Can I/Should I use the !hasmapto paradigm here?
+"?if !hasmapto('<Plug>DubsBufferFun_ToggleFullscreen_Hack')
+"?  map <silent> <unique> ???????
+"?    \ <Plug>DubsStyleGuard_CycleThruStyleGuides
+"?endif
 map <silent> <unique> <script> 
-  \ <Plug>ToggleFullscreen_Hack 
+  \ <Plug>DubsBufferFun_ToggleFullscreen_Hack 
   \ :call <SID>ToggleFullscreen_Hack()<CR>
+
 "   2. Thunk the <Plug>
 function s:ToggleFullscreen_Hack()
   if exists('s:is_fullscreentoggled')
