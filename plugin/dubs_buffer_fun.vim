@@ -7,19 +7,19 @@
 " vim:tw=0:ts=2:sw=2:et:norl:
 " -------------------------------------------------------------------
 " Copyright © 2009, 2015, 2017 Landon Bouma.
-" 
+"
 " This file is part of Dubsacks.
-" 
+"
 " Dubsacks is free software: you can redistribute it and/or
 " modify it under the terms of the GNU General Public License
 " as published by the Free Software Foundation, either version
 " 3 of the License, or (at your option) any later version.
-" 
+"
 " Dubsacks is distributed in the hope that it will be useful,
 " but WITHOUT ANY WARRANTY; without even the implied warranty
 " of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
 " the GNU General Public License for more details.
-" 
+"
 " You should have received a copy of the GNU General Public License
 " along with Dubsacks. If not, see <http://www.gnu.org/licenses/>
 " or write Free Software Foundation, Inc., 51 Franklin Street,
@@ -34,7 +34,7 @@
 " ------------------------------------------
 " Startguard:
 
-" Only load if Vim is at least version 7 and 
+" Only load if Vim is at least version 7 and
 " if the script has not already been loaded
 if v:version < 700 || exists('plugin_dubs_buffer_fun') || &cp
   finish
@@ -63,14 +63,14 @@ autocmd BufReadPost *
 " MRU Buffer Jumping
 " ------------------------------------------------------
 
-" Map F12 to Ctrl-^, to toggle between the 
+" Map F12 to Ctrl-^, to toggle between the
 " current buffer and the last used buffer.
 " But first!
-"   Turn on hidden, so if we're on a modified 
-"   buffer, we can hide it without getting a 
+"   Turn on hidden, so if we're on a modified
+"   buffer, we can hide it without getting a
 "   warning
 set hidden
-" 2011.05.20: I don't use this for jumping buffers. 
+" 2011.05.20: I don't use this for jumping buffers.
 "             I use F2 and the pg-right key.
 "map <F12> :e #<CR>
 "inoremap <F12> <C-O>:e #<CR>
@@ -131,8 +131,8 @@ inoremap <S-F2> <ESC>:ls<CR>:b<Space>
 "            (Browser Fwd is just above <Right>)
 "            Since Browser back is a special key,
 "            too (delete), and since I use F12 a lot,
-"            I figured I'd map the MRU buffer to 
-"            Alt-End, as well, so I can find hit when 
+"            I figured I'd map the MRU buffer to
+"            Alt-End, as well, so I can find hit when
 "            I'm on the bottoms of my keyboard.
 " I've got two available keys: M-BrwLeft and BrwRight
 " (Really, M-BrwLeft is M-Delete, and BrwRight is End)
@@ -154,22 +154,22 @@ inoremap <S-F2> <ESC>:ls<CR>:b<Space>
 " better. See Shift-F2, which is mapped to :ls<CR>:b<Space>
 
 function! s:SimplBuffrListr()
-  " Show all buffers, one per line, in the 
-  " command-line window (which expands upward 
+  " Show all buffers, one per line, in the
+  " command-line window (which expands upward
   " as needed, and disappears when finished)
-  " TODO I've never tested w/ more buffers than 
+  " TODO I've never tested w/ more buffers than
   "      screen lines -- is there a More/Enter-to-
   "      Continue prompt?
   :buffers
   " Ask the user to enter a buffer by its number
   let i = input("Buffer number: ")
-  " Check for <ESC> lest we dismiss a help 
+  " Check for <ESC> lest we dismiss a help
   " page (or something not in the buffer list)
   if i != ""
    execute "buffer " . i
   endif
 endfunction
-" Map a double-underscore to the simpl(e) 
+" Map a double-underscore to the simpl(e)
 " buffe(r) liste(r)
 " EXPLAIN/2017-03-28: function defined as s:SimplBuffrListr,
 "                                  not as <SID>SimplBuffrListr,
@@ -178,7 +178,7 @@ map <silent> __ :call <SID>SimplBuffrListr()<CR>
 " NOTE to the wise: tabs? tabs?! who needs tabs!!?
 "      buflists? buflists?! who needs buflists!!?
 "      serlussly, pound a double-underscore every
-"      once 'n a while, but keep yer doc names 
+"      once 'n a while, but keep yer doc names
 "      outta me face. #foccers
 
 " ------------------------------------------
@@ -186,7 +186,7 @@ map <silent> __ :call <SID>SimplBuffrListr()<CR>
 " ------------------------------------------
 " From http://vim.wikia.com/wiki/VimTip165
 
-" The following is a modified version of the script 
+" The following is a modified version of the script
 " detailed at http://vim.wikia.com/wiki/VimTip165,
 " last updated 2008-11-18.
 
@@ -197,9 +197,9 @@ function! s:Warn(msg)
   echohl NONE
 endfunction
 
-" By default, allow the user to close a buffer 
+" By default, allow the user to close a buffer
 " even if it's being viewed in multiple windows.
-" The user can :let g:plugin_bclose_multiple = 0 
+" The user can :let g:plugin_bclose_multiple = 0
 " in their Vim startup script to prevent this.
 if !exists('g:plugin_bclose_multiple')
   let g:plugin_bclose_multiple = 1
@@ -230,7 +230,7 @@ function! s:Bclose(bang, buffer)
     "return
   endif
   " Numbers of windows that view target buffer which we will delete.
-  let wnums = filter(range(1, winnr('$')), 
+  let wnums = filter(range(1, winnr('$')),
     \ 'winbufnr(v:val) == btarget')
   if !g:plugin_bclose_multiple && len(wnums) > 1
     call s:Warn('Buffer is in multiple windows '
@@ -248,7 +248,7 @@ function! s:Bclose(bang, buffer)
     endif
     if btarget == bufnr('%')
       " Numbers of listed buffers which are not the target to be deleted.
-      let blisted = filter(range(1, bufnr('$')), 
+      let blisted = filter(range(1, bufnr('$')),
         \ 'buflisted(v:val) && v:val != btarget')
       " Listed, not target, and not displayed.
       let bhidden = filter(copy(blisted), 'bufwinnr(v:val) < 0')
@@ -280,16 +280,16 @@ nnoremap <silent> <Leader>bd :Bclose<CR>
 
 " Ctrl-Tab is for Tabs, Silly... no wait, Buffers!
 " --------------------------------
-" mswin.vim maps Ctrl-Tab to Next Window. To be 
-" more consistent with Windows (the OS), Ctrl-Tab 
-" should map to Next Tab... but in this case, I'm 
-" going to deviate from the norm and ask that you 
-" tab-holders-onners let go and try thinking in 
-" terms of buffers. It's all about the buffers, 
+" mswin.vim maps Ctrl-Tab to Next Window. To be
+" more consistent with Windows (the OS), Ctrl-Tab
+" should map to Next Tab... but in this case, I'm
+" going to deviate from the norm and ask that you
+" tab-holders-onners let go and try thinking in
+" terms of buffers. It's all about the buffers,
 " benjamin! (baby?)
 
-" TODO The cursor is not preserved between 
-"      buffers! So make code that restores 
+" TODO The cursor is not preserved between
+"      buffers! So make code that restores
 "      the cursor...
 
 " This is Ctrl-Tab to Next Buffer
@@ -316,11 +316,11 @@ inoremap <C-S-Tab> <C-O>:call <SID>BufNext_SkipSpecialBufs(-1)<CR>
 onoremap <C-S-Tab> <C-C>:call <SID>BufNext_SkipSpecialBufs(-1)<CR>
 snoremap <C-S-Tab> <C-C>:call <SID>BufNext_SkipSpecialBufs(-1)<CR>
 
-"map <silent> <unique> <script> 
-"  \ <Plug>DubsBufferFun_BufNextNormal 
+"map <silent> <unique> <script>
+"  \ <Plug>DubsBufferFun_BufNextNormal
 "  \ :call <SID>BufNext_SkipSpecialBufs(1)<CR>
-"map <silent> <unique> <script> 
-"  \ <Plug>DubsBufferFun_BufPrevNormal 
+"map <silent> <unique> <script>
+"  \ <Plug>DubsBufferFun_BufPrevNormal
 "  \ :call <SID>BufNext_SkipSpecialBufs(-1)<CR>
 ""   2. Thunk the <Plug>
 function s:BufNext_SkipSpecialBufs(direction)
@@ -363,7 +363,7 @@ function s:BufNext_SkipSpecialBufs(direction)
   endwhile
 endfunction
 
-" NOTE Change :bn to :tabn and :bN to :tabN 
+" NOTE Change :bn to :tabn and :bN to :tabN
 "      if you'd rather have your tabs back
 
 " ------------------------------------------------------
@@ -396,7 +396,7 @@ onoremap <C-S-Up> <C-C><C-W>W
 " Karma's an Itch
 " --------------------------------
 " We taketh, and we giveth.
-" Re-map next and previous tab, since we 
+" Re-map next and previous tab, since we
 " took away Ctrl-PageUp/Down earlier.
 
 " This is Alt-PageDown to Next Tab Page
@@ -422,14 +422,14 @@ onoremap <M-PageUp> <C-C>:tabN<CR>
 " --------------------------------
 " First, configure MiniBufExplorer
 " to show up just above the status line
-" (at the bottom of the gVim window, 
+" (at the bottom of the gVim window,
 "  rather than at the top)
 let g:miniBufExplSplitBelow = 1
-" The next variable causes MiniBufExplorer to 
+" The next variable causes MiniBufExplorer to
 " auto-load when N eligible buffers are visible;
-" this is distracting in Gvim, so I set it to 
-" 1 to auto-open at first, but this also doesn't 
-" work well from the command line with just Vim, 
+" this is distracting in Gvim, so I set it to
+" 1 to auto-open at first, but this also doesn't
+" work well from the command line with just Vim,
 " so we check our environment first
 if has("gui_running")
   let g:miniBufExplorerMoreThanOne = 1
@@ -440,10 +440,10 @@ endif
 let g:miniBufExplUseSingleClick = 1
 " Start w/ minibufexpl off
 " TODO BROKEN It starts with Command-line Vim, whaddup...?
-"      (Meaning you gotta :q twice to exit, since the first 
+"      (Meaning you gotta :q twice to exit, since the first
 "       :q just closes the MiniBufExpl window)
 let s:MiniBufExplPath = ""
-"" NOTE I can't find any other place this is used, but 
+"" NOTE I can't find any other place this is used, but
 ""      set MiniBufExplLoaded to -1 so MBE loads for gVim
 ""      but not for terminal Vim (tVim?)
 "let s:MiniBufExplLoaded = -1
@@ -453,27 +453,27 @@ let s:mbef = findfile(s:MiniBufExplFile,
 if s:mbef != ''
   " Turn into a full path. See :h filename-modifiers
   let s:MiniBufExplPath = fnamemodify(s:mbef, ":p")
-elseif filereadable($HOME . "/.vim/plugin/" 
+elseif filereadable($HOME . "/.vim/plugin/"
                 \ . s:MiniBufExplFile)
   " $HOME/.vim is just *nix
-  let s:MiniBufExplPath = $HOME 
+  let s:MiniBufExplPath = $HOME
                           \ . "/.vim/plugin/"
                           \ . s:MiniBufExplFile
-elseif filereadable($USERPROFILE 
-                    \ . "/vimfiles/plugin/" 
+elseif filereadable($USERPROFILE
+                    \ . "/vimfiles/plugin/"
                     \ . s:MiniBufExplFile)
   " $HOME/vimfiles is just Windows
-  let s:MiniBufExplPath = $USERPROFILE 
-                          \ . "/vimfiles/plugin/" 
+  let s:MiniBufExplPath = $USERPROFILE
+                          \ . "/vimfiles/plugin/"
                           \ . s:MiniBufExplFile
 "elseif
-  " TODO What about Mac? Probably just 
+  " TODO What about Mac? Probably just
   "      like *nix, right?
-elseif filereadable($VIMRUNTIME 
-                    \ . "/plugin/" 
+elseif filereadable($VIMRUNTIME
+                    \ . "/plugin/"
                     \ . s:MiniBufExplFile)
   " $VIMRUNTIME works for both *nix and Windows
-  let s:MiniBufExplPath = $VIMRUNTIME 
+  let s:MiniBufExplPath = $VIMRUNTIME
                           \ . "/plugin/"
                           \ . s:MiniBufExplFile
 endif
@@ -485,7 +485,7 @@ endif
 " 2015.01.15: Deprecated: CMiniBufExplorer, replaced by MBEClose.
 autocmd VimEnter * nested
     \ let greatest_buf_no = bufnr('$') |
-    \ if (greatest_buf_no == 1) 
+    \ if (greatest_buf_no == 1)
     \     && (bufname(1) == "") |
     \   execute "MBEClose" |
     \ endif
@@ -517,7 +517,7 @@ imap <M-@> <C-O>:ToggleMiniBufExplorer<CR>
 " Fullscreen
 " ------------------------------------------------------
 
-" This is such a hack! Just set lines and columns 
+" This is such a hack! Just set lines and columns
 " to ridiculous numbers.
 " See dubsacks.vim, which inits cols,ll to 111,44
 " FIXME 111,44 magic numbers, also shared w/ dubsacks.vim
@@ -527,16 +527,16 @@ imap <M-@> <C-O>:ToggleMiniBufExplorer<CR>
 " 2011.05.20: Disabling. It sucks at what it does.
 "map <F11> <Plug>DubsBufferFun_ToggleFullscreen_Hack
 
-" FIXME I don't use this fcn.: it's not very elegant. I just 
-"       double-click the titlebar instead and let Gnome handle it... 
+" FIXME I don't use this fcn.: it's not very elegant. I just
+"       double-click the titlebar instead and let Gnome handle it...
 
 " 2017-03-28: Can I/Should I use the !hasmapto paradigm here?
 "?if !hasmapto('<Plug>DubsBufferFun_ToggleFullscreen_Hack')
 "?  map <silent> <unique> ???????
 "?    \ <Plug>DubsStyleGuard_CycleThruStyleGuides
 "?endif
-map <silent> <unique> <script> 
-  \ <Plug>DubsBufferFun_ToggleFullscreen_Hack 
+map <silent> <unique> <script>
+  \ <Plug>DubsBufferFun_ToggleFullscreen_Hack
   \ :call <SID>ToggleFullscreen_Hack()<CR>
 
 "   2. Thunk the <Plug>
