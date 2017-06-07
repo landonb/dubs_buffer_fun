@@ -1,6 +1,6 @@
 " File: dubs_buffer_fun.vim
 " Author: Landon Bouma (landonb &#x40; retrosoft &#x2E; com)
-" Last Modified: 2017.06.06
+" Last Modified: 2017.06.07
 " Project Page: https://github.com/landonb/dubs_buffer_fun
 " Summary: Buffer and window navigation features, and ctags!
 " License: GPLv3
@@ -373,11 +373,17 @@ noremap <C-j> :BufSurfBack<CR>
 inoremap <C-j> <C-O>:BufSurfBack<CR>
 cnoremap <C-j> <C-C>:BufSurfBack<CR>
 onoremap <C-j> <C-C>:BufSurfBack<CR>
+"
 noremap <C-k> :BufSurfForward<CR>
-" 2017-06-06: So digraph insertion works...
+" 2017-06-06: Don't touch <C-k>, so digraph insertion works...
 "inoremap <C-k> <C-O>:BufSurfForward<CR>
 cnoremap <C-k> <C-C>:BufSurfForward<CR>
 onoremap <C-k> <C-C>:BufSurfForward<CR>
+" <Ctrl-l> [is a Dubs command that] swaps two paragraphs. Which I don't use...
+noremap <C-l> :BufSurfForward<CR>
+inoremap <C-l> <C-O>:BufSurfForward<CR>
+cnoremap <C-l> <C-C>:BufSurfForward<CR>
+onoremap <C-l> <C-C>:BufSurfForward<CR>
 
 " Ctrl-Shift-Up/Down Jumps Windows
 " --------------------------------
