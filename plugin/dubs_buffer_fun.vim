@@ -1,6 +1,6 @@
 " File: dubs_buffer_fun.vim
 " Author: Landon Bouma (landonb &#x40; retrosoft &#x2E; com)
-" Last Modified: 2017.03.28
+" Last Modified: 2017.06.06
 " Project Page: https://github.com/landonb/dubs_buffer_fun
 " Summary: Buffer and window navigation features, and ctags!
 " License: GPLv3
@@ -374,7 +374,8 @@ inoremap <C-j> <C-O>:BufSurfBack<CR>
 cnoremap <C-j> <C-C>:BufSurfBack<CR>
 onoremap <C-j> <C-C>:BufSurfBack<CR>
 noremap <C-k> :BufSurfForward<CR>
-inoremap <C-k> <C-O>:BufSurfForward<CR>
+" 2017-06-06: So digraph insertion works...
+"inoremap <C-k> <C-O>:BufSurfForward<CR>
 cnoremap <C-k> <C-C>:BufSurfForward<CR>
 onoremap <C-k> <C-C>:BufSurfForward<CR>
 
