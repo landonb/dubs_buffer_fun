@@ -1,6 +1,6 @@
 " File: dubs_buffer_fun.vim
 " Author: Landon Bouma (landonb &#x40; retrosoft &#x2E; com)
-" Last Modified: 2017.06.07
+" Last Modified: 2017.06.10
 " Project Page: https://github.com/landonb/dubs_buffer_fun
 " Summary: Buffer and window navigation features, and ctags!
 " License: GPLv3
@@ -25,11 +25,6 @@
 " or write Free Software Foundation, Inc., 51 Franklin Street,
 "                     Fifth Floor, Boston, MA 02110-1301, USA.
 " ===================================================================
-
-" ------------------------------------------
-" Versions:
-
-" Version: 1.0.0 / 2009.09.09
 
 " ------------------------------------------
 " Startguard:
@@ -273,117 +268,6 @@ command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose('<bang>', '<arg
 
 " Also make a shortcut at \bd
 nnoremap <silent> <Leader>bd :Bclose<CR>
-
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Switching Buffers/Windows/Tabs
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-" Ctrl-Tab is for Tabs, Silly... no wait, Buffers!
-" --------------------------------
-" mswin.vim maps Ctrl-Tab to Next Window. To be
-" more consistent with Windows (the OS), Ctrl-Tab
-" should map to Next Tab... but in this case, I'm
-" going to deviate from the norm and ask that you
-" tab-holders-onners let go and try thinking in
-" terms of buffers. It's all about the buffers,
-" benjamin! (baby?)
-
-" TODO The cursor is not preserved between
-"      buffers! So make code that restores
-"      the cursor...
-
-" This is Ctrl-Tab to Next Buffer
-"noremap <C-Tab> :bn<CR>
-"inoremap <C-Tab> <C-O>:bn<CR>
-""cnoremap <C-Tab> <C-C>:bn<CR>
-"onoremap <C-Tab> <C-C>:bn<CR>
-"snoremap <C-Tab> <C-C>:bn<CR>
-noremap <C-Tab> :call <SID>BufNext_SkipSpecialBufs(1)<CR>
-inoremap <C-Tab> <C-O>:call <SID>BufNext_SkipSpecialBufs(1)<CR>
-"cnoremap <C-Tab> <C-C>:call <SID>BufNext_SkipSpecialBufs(1)<CR>
-onoremap <C-Tab> <C-C>:call <SID>BufNext_SkipSpecialBufs(1)<CR>
-snoremap <C-Tab> <C-C>:call <SID>BufNext_SkipSpecialBufs(1)<CR>
-
-" This is Ctrl-Shift-Tab to Previous Buffer
-"noremap <C-S-Tab> :bN<CR>
-"inoremap <C-S-Tab> <C-O>:bN<CR>
-""cnoremap <C-S-Tab> <C-C>:bN<CR>
-"onoremap <C-S-Tab> <C-C>:bN<CR>
-"snoremap <C-S-Tab> <C-C>:bN<CR>
-noremap <C-S-Tab> :call <SID>BufNext_SkipSpecialBufs(-1)<CR>
-inoremap <C-S-Tab> <C-O>:call <SID>BufNext_SkipSpecialBufs(-1)<CR>
-"cnoremap <C-S-Tab> <C-C>:call <SID>BufNext_SkipSpecialBufs(-1)<CR>
-onoremap <C-S-Tab> <C-C>:call <SID>BufNext_SkipSpecialBufs(-1)<CR>
-snoremap <C-S-Tab> <C-C>:call <SID>BufNext_SkipSpecialBufs(-1)<CR>
-
-"map <silent> <unique> <script>
-"  \ <Plug>DubsBufferFun_BufNextNormal
-"  \ :call <SID>BufNext_SkipSpecialBufs(1)<CR>
-"map <silent> <unique> <script>
-"  \ <Plug>DubsBufferFun_BufPrevNormal
-"  \ :call <SID>BufNext_SkipSpecialBufs(-1)<CR>
-""   2. Thunk the <Plug>
-function s:BufNext_SkipSpecialBufs(direction)
-  let start_bufnr = bufnr("%")
-  let done = 0
-  while done == 0
-    if 1 == a:direction
-      execute "bn"
-    elseif -1 == a:direction
-      execute "bN"
-    endif
-    let n = bufnr("%")
-    "echo "n = ".n." / start_bufnr = ".start_bufnr." / buftype = ".getbufvar(n, "&buftype")
-    "if (getbufvar(n, "&buftype") == "")
-    "    echo "TRUE"
-    "endif
-     " Just 1 buffer or none are editable
-    "if (start_bufnr == n)
-    "      \ || ( (getbufvar(n, "&buftype") == "")
-    "        \   && ( ((getbufvar(n, "&filetype") != "")
-    "        \       && (getbufvar(n, "&fileencoding") != ""))
-    "        \     || (getbufvar(n, "&modified") == 1)))
-" FIXME Diff against previous impl
-" FIXME Doesn't switch to .txt --> so set filetype for *.txt? another way?
-    if (start_bufnr == n)
-        \ || (getbufvar(n, "&modified") == 1)
-        \ || ( (getbufvar(n, "&buftype") == "")
-        \   && ((getbufvar(n, "&filetype") != "")
-        \     || (getbufvar(n, "&fileencoding") != "")) )
-      " (start_bufnr == n) means just 1 buffer or no candidates found
-      " (buftype == "") means not quickfix, help, etc., buffer
-      " NOTE My .txt files don't have a filetype...
-      " (filetype != "" && fileencoding != "") means not a new buffer
-      " (modified == "modified") means we don't skip dirty new buffers
-      " HACK Make sure previous buffer works
-      execute start_bufnr."buffer"
-      execute n."buffer"
-      let done = 1
-    endif
-  endwhile
-endfunction
-
-" NOTE Change :bn to :tabn and :bN to :tabN
-"      if you'd rather have your tabs back
-
-" ------------------------------------------------------
-" Ctrl-J/Ctrl-K Traverse Buffer History
-" ------------------------------------------------------
-noremap <C-j> :BufSurfBack<CR>
-inoremap <C-j> <C-O>:BufSurfBack<CR>
-cnoremap <C-j> <C-C>:BufSurfBack<CR>
-onoremap <C-j> <C-C>:BufSurfBack<CR>
-"
-noremap <C-k> :BufSurfForward<CR>
-" 2017-06-06: Don't touch <C-k>, so digraph insertion works...
-"inoremap <C-k> <C-O>:BufSurfForward<CR>
-cnoremap <C-k> <C-C>:BufSurfForward<CR>
-onoremap <C-k> <C-C>:BufSurfForward<CR>
-" <Ctrl-l> [is a Dubs command that] swaps two paragraphs. Which I don't use...
-noremap <C-l> :BufSurfForward<CR>
-inoremap <C-l> <C-O>:BufSurfForward<CR>
-cnoremap <C-l> <C-C>:BufSurfForward<CR>
-onoremap <C-l> <C-C>:BufSurfForward<CR>
 
 " Ctrl-Shift-Up/Down Jumps Windows
 " --------------------------------
