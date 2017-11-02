@@ -401,10 +401,9 @@ endif
 "nmap <M-@> :ToggleMiniBufExplorer<CR>
 "imap <M-@> <C-O>:ToggleMiniBufExplorer<CR>
 " FIXME/2017-11-02: Find a better way to do this.
-"   1. Open to a new window, rather than poluting current one.
-"   2. If netrw open, pressing Alt-Shift-F2 should close the browser.
-nmap <M-@> :Explore<CR>
-imap <M-@> <C-O>:Explore<CR>
+"   1. If netrw open, pressing Alt-Shift-F2 should close the browser.
+nmap <M-@> :Lexplore<CR>
+imap <M-@> <C-O>:Lexplore<CR>
 
 " FIXME Toggling minibufexplorer in insert mode marks current buffer dirty
 "       2011.01.18 I noticed this yesterday but today I'm not seeing it...
