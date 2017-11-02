@@ -1,6 +1,6 @@
 " File: dubs_buffer_fun.vim
 " Author: Landon Bouma (landonb &#x40; retrosoft &#x2E; com)
-" Last Modified: 2017.06.10
+" Last Modified: 2017.11.02
 " Project Page: https://github.com/landonb/dubs_buffer_fun
 " Summary: Buffer and window navigation features, and ctags!
 " License: GPLv3
@@ -374,12 +374,13 @@ else
   "call confirm('Dubs: Cannot find MiniBuf Explorer', 'OK')
 endif
 " 2015.01.15: Deprecated: CMiniBufExplorer, replaced by MBEClose.
-autocmd VimEnter * nested
-    \ let greatest_buf_no = bufnr('$') |
-    \ if (greatest_buf_no == 1)
-    \     && (bufname(1) == "") |
-    \   execute "MBEClose" |
-    \ endif
+" 2017-11-02: Removed minibufexpl.vim.
+"autocmd VimEnter * nested
+"  \ let greatest_buf_no = bufnr('$') |
+"  \ if (greatest_buf_no == 1)
+"  \     && (bufname(1) == "") |
+"  \   execute "MBEClose" |
+"  \ endif
 
 " New 2011.01.13: Smart toggle. If you don't do this and your Quickfix window
 " is open, toggling the minibuf window will make the Quickfix window taller.
