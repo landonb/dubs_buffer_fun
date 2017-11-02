@@ -338,6 +338,7 @@ let s:MiniBufExplPath = ""
 ""      set MiniBufExplLoaded to -1 so MBE loads for gVim
 ""      but not for terminal Vim (tVim?)
 "let s:MiniBufExplLoaded = -1
+" 2017-11-02: Removed minibufexpl.vim.
 let s:MiniBufExplFile = "minibufexpl.vim"
 let s:mbef = findfile(s:MiniBufExplFile,
                       \ pathogen#split(&rtp)[0] . "/**")
@@ -371,6 +372,7 @@ endif
 if s:MiniBufExplPath != ''
   execute "source " . s:MiniBufExplPath
 else
+  " 2017-11-02: Removed minibufexpl.vim.
   "call confirm('Dubs: Cannot find MiniBuf Explorer', 'OK')
 endif
 " 2015.01.15: Deprecated: CMiniBufExplorer, replaced by MBEClose.
@@ -395,8 +397,14 @@ endif
 " SYNC_ME: Dubsacks' <M-????> mappings are spread across plugins. [M-S-2]
 "nmap <M-@> :call ToggleMiniBufExplorer()<CR>
 "imap <M-@> <C-O>:call ToggleMiniBufExplorer()<CR>
-nmap <M-@> :ToggleMiniBufExplorer<CR>
-imap <M-@> <C-O>:ToggleMiniBufExplorer<CR>
+" 2017-11-02: Removed minibufexpl.vim. Because it breaks Vim if you use netrw (:Explore).
+"nmap <M-@> :ToggleMiniBufExplorer<CR>
+"imap <M-@> <C-O>:ToggleMiniBufExplorer<CR>
+" FIXME/2017-11-02: Find a better way to do this.
+"   1. Open to a new window, rather than poluting current one.
+"   2. If netrw open, pressing Alt-Shift-F2 should close the browser.
+nmap <M-@> :Explore<CR>
+imap <M-@> <C-O>:Explore<CR>
 
 " FIXME Toggling minibufexplorer in insert mode marks current buffer dirty
 "       2011.01.18 I noticed this yesterday but today I'm not seeing it...
