@@ -309,7 +309,7 @@ onoremap <M-PageUp> <C-C>:tabN<CR>
 " Mini Buffer Explorer Shortcut
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 2017-11-02: Removed minibufexpl.vim.
-function FindAndSourceMiniBufExpl_DEPRECATED()
+function s:FindAndSourceMiniBufExpl_DEPRECATED()
   " Alt-Shift-2 // Toggle Mini Buffer Explorer
   " --------------------------------
   " First, configure MiniBufExplorer
