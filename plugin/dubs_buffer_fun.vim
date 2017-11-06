@@ -1,6 +1,6 @@
 " File: dubs_buffer_fun.vim
 " Author: Landon Bouma (landonb &#x40; retrosoft &#x2E; com)
-" Last Modified: 2017.11.02
+" Last Modified: 2017.11.06
 " Project Page: https://github.com/landonb/dubs_buffer_fun
 " Summary: Buffer and window navigation features, and ctags!
 " License: GPLv3
@@ -308,81 +308,82 @@ onoremap <M-PageUp> <C-C>:tabN<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Mini Buffer Explorer Shortcut
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-" Alt-Shift-2 // Toggle Mini Buffer Explorer
-" --------------------------------
-" First, configure MiniBufExplorer
-" to show up just above the status line
-" (at the bottom of the gVim window,
-"  rather than at the top)
-let g:miniBufExplSplitBelow = 1
-" The next variable causes MiniBufExplorer to
-" auto-load when N eligible buffers are visible;
-" this is distracting in Gvim, so I set it to
-" 1 to auto-open at first, but this also doesn't
-" work well from the command line with just Vim,
-" so we check our environment first
-if has("gui_running")
-  let g:miniBufExplorerMoreThanOne = 1
-else
-  let g:miniBufExplorerMoreThanOne = 2
-endif
-" Instead of double-click, single-click to switch to buffer
-let g:miniBufExplUseSingleClick = 1
-" Start w/ minibufexpl off
-" TODO BROKEN It starts with Command-line Vim, whaddup...?
-"      (Meaning you gotta :q twice to exit, since the first
-"       :q just closes the MiniBufExpl window)
-let s:MiniBufExplPath = ""
-"" NOTE I can't find any other place this is used, but
-""      set MiniBufExplLoaded to -1 so MBE loads for gVim
-""      but not for terminal Vim (tVim?)
-"let s:MiniBufExplLoaded = -1
 " 2017-11-02: Removed minibufexpl.vim.
-let s:MiniBufExplFile = "minibufexpl.vim"
-let s:mbef = findfile(s:MiniBufExplFile,
-                      \ pathogen#split(&rtp)[0] . "/**")
-if s:mbef != ''
-  " Turn into a full path. See :h filename-modifiers
-  let s:MiniBufExplPath = fnamemodify(s:mbef, ":p")
-elseif filereadable($HOME . "/.vim/plugin/"
-                \ . s:MiniBufExplFile)
-  " $HOME/.vim is just *nix
-  let s:MiniBufExplPath = $HOME
-                          \ . "/.vim/plugin/"
-                          \ . s:MiniBufExplFile
-elseif filereadable($USERPROFILE
-                    \ . "/vimfiles/plugin/"
-                    \ . s:MiniBufExplFile)
-  " $HOME/vimfiles is just Windows
-  let s:MiniBufExplPath = $USERPROFILE
-                          \ . "/vimfiles/plugin/"
-                          \ . s:MiniBufExplFile
-"elseif
-  " TODO What about Mac? Probably just
-  "      like *nix, right?
-elseif filereadable($VIMRUNTIME
-                    \ . "/plugin/"
-                    \ . s:MiniBufExplFile)
-  " $VIMRUNTIME works for both *nix and Windows
-  let s:MiniBufExplPath = $VIMRUNTIME
-                          \ . "/plugin/"
-                          \ . s:MiniBufExplFile
-endif
-if s:MiniBufExplPath != ''
-  execute "source " . s:MiniBufExplPath
-else
+function FindAndSourceMiniBufExpl_DEPRECATED()
+  " Alt-Shift-2 // Toggle Mini Buffer Explorer
+  " --------------------------------
+  " First, configure MiniBufExplorer
+  " to show up just above the status line
+  " (at the bottom of the gVim window,
+  "  rather than at the top)
+  let g:miniBufExplSplitBelow = 1
+  " The next variable causes MiniBufExplorer to
+  " auto-load when N eligible buffers are visible;
+  " this is distracting in Gvim, so I set it to
+  " 1 to auto-open at first, but this also doesn't
+  " work well from the command line with just Vim,
+  " so we check our environment first
+  if has("gui_running")
+    let g:miniBufExplorerMoreThanOne = 1
+  else
+    let g:miniBufExplorerMoreThanOne = 2
+  endif
+  " Instead of double-click, single-click to switch to buffer
+  let g:miniBufExplUseSingleClick = 1
+  " Start w/ minibufexpl off
+  " TODO BROKEN It starts with Command-line Vim, whaddup...?
+  "      (Meaning you gotta :q twice to exit, since the first
+  "       :q just closes the MiniBufExpl window)
+  let s:MiniBufExplPath = ""
+  "" NOTE I can't find any other place this is used, but
+  ""      set MiniBufExplLoaded to -1 so MBE loads for gVim
+  ""      but not for terminal Vim (tVim?)
+  "let s:MiniBufExplLoaded = -1
   " 2017-11-02: Removed minibufexpl.vim.
-  "call confirm('Dubs: Cannot find MiniBuf Explorer', 'OK')
-endif
-" 2015.01.15: Deprecated: CMiniBufExplorer, replaced by MBEClose.
-" 2017-11-02: Removed minibufexpl.vim.
-"autocmd VimEnter * nested
-"  \ let greatest_buf_no = bufnr('$') |
-"  \ if (greatest_buf_no == 1)
-"  \     && (bufname(1) == "") |
-"  \   execute "MBEClose" |
-"  \ endif
+  let s:MiniBufExplFile = "minibufexpl.vim"
+  let s:mbef = findfile(s:MiniBufExplFile,
+                        \ pathogen#split(&rtp)[0] . "/**")
+  if s:mbef != ''
+    " Turn into a full path. See :h filename-modifiers
+    let s:MiniBufExplPath = fnamemodify(s:mbef, ":p")
+  elseif filereadable($HOME . "/.vim/plugin/"
+                  \ . s:MiniBufExplFile)
+    " $HOME/.vim is just *nix
+    let s:MiniBufExplPath = $HOME
+                            \ . "/.vim/plugin/"
+                            \ . s:MiniBufExplFile
+  elseif filereadable($USERPROFILE
+                      \ . "/vimfiles/plugin/"
+                      \ . s:MiniBufExplFile)
+    " $HOME/vimfiles is just Windows
+    let s:MiniBufExplPath = $USERPROFILE
+                            \ . "/vimfiles/plugin/"
+                            \ . s:MiniBufExplFile
+  "elseif
+    " TODO What about Mac? Probably just
+    "      like *nix, right?
+  elseif filereadable($VIMRUNTIME
+                      \ . "/plugin/"
+                      \ . s:MiniBufExplFile)
+    " $VIMRUNTIME works for both *nix and Windows
+    let s:MiniBufExplPath = $VIMRUNTIME
+                            \ . "/plugin/"
+                            \ . s:MiniBufExplFile
+  endif
+  if s:MiniBufExplPath != ''
+    execute "source " . s:MiniBufExplPath
+  else
+    " 2017-11-02: Removed minibufexpl.vim.
+    "call confirm('Dubs: Cannot find MiniBuf Explorer', 'OK')
+  endif
+  " 2015.01.15: Deprecated: CMiniBufExplorer, replaced by MBEClose.
+  autocmd VimEnter * nested
+    \ let greatest_buf_no = bufnr('$') |
+    \ if (greatest_buf_no == 1)
+    \     && (bufname(1) == "") |
+    \   execute "MBEClose" |
+    \ endif
+endfunction
 
 " New 2011.01.13: Smart toggle. If you don't do this and your Quickfix window
 " is open, toggling the minibuf window will make the Quickfix window taller.
