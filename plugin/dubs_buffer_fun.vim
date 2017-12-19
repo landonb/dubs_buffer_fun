@@ -272,15 +272,33 @@ nnoremap <silent> <Leader>bd :Bclose<CR>
 " Ctrl-Shift-Up/Down Jumps Windows
 " --------------------------------
 
+let s:was_insert_mode = 0
+function! s:JumpWindow(where, was_insert_mode)
+  let l:was_quickfix = 0
+  if &ft == 'qf'
+    let l:was_quickfix = 1
+  else
+    let s:was_insert_mode = a:was_insert_mode
+  endif
+
+  execute "normal! \<C-W>" . a:where
+
+  if &ft == 'qf'
+    stopinsert
+  elseif l:was_quickfix == 1 && s:was_insert_mode == 1
+    startinsert
+  endif
+endfunction
+
 " This is Ctrl-Shift-Down to Next Window
-noremap <C-S-Down> <C-W>w
-inoremap <C-S-Down> <C-O><C-W>w
+noremap <C-S-Down> :call <SID>JumpWindow('w', 0)<CR>
+inoremap <C-S-Down> <C-O>:call <SID>JumpWindow('w', 1)<CR>
 cnoremap <C-S-Down> <C-C><C-W>w
 onoremap <C-S-Down> <C-C><C-W>w
 
 " And this is Ctrl-Shift-Up to Previous Window
-noremap <C-S-Up> <C-W>W
-inoremap <C-S-Up> <C-O><C-W>W
+noremap <C-S-Up> :call <SID>JumpWindow('W', 0)<CR>
+inoremap <C-S-Up> <C-O>:call <SID>JumpWindow('W', 1)<CR>
 cnoremap <C-S-Up> <C-C><C-W>W
 onoremap <C-S-Up> <C-C><C-W>W
 
