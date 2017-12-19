@@ -1,6 +1,6 @@
 " File: dubs_buffer_fun.vim
 " Author: Landon Bouma (landonb &#x40; retrosoft &#x2E; com)
-" Last Modified: 2017.11.06
+" Last Modified: 2017.12.19
 " Project Page: https://github.com/landonb/dubs_buffer_fun
 " Summary: Buffer and window navigation features, and ctags!
 " License: GPLv3
@@ -79,7 +79,7 @@ set hidden
 nnoremap <F2> :call <SID>Switch_MRU_Safe()<CR>
 inoremap <F2> <C-O>:call <SID>Switch_MRU_Safe()<CR>
 "
-function s:Switch_MRU_Safe()
+function! s:Switch_MRU_Safe()
   " Check the current buffer for specialness.
   if ((&buflisted == 0)
       \ || (&buftype == 'quickfix')
@@ -309,7 +309,7 @@ onoremap <M-PageUp> <C-C>:tabN<CR>
 " Mini Buffer Explorer Shortcut
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 2017-11-02: Removed minibufexpl.vim.
-function s:FindAndSourceMiniBufExpl_DEPRECATED()
+function! s:FindAndSourceMiniBufExpl_DEPRECATED()
   " Alt-Shift-2 // Toggle Mini Buffer Explorer
   " --------------------------------
   " First, configure MiniBufExplorer
@@ -435,12 +435,12 @@ imap <M-@> <C-O>:Lexplore<CR>
 "?  map <silent> <unique> ???????
 "?    \ <Plug>DubsStyleGuard_CycleThruStyleGuides
 "?endif
-map <silent> <unique> <script>
+map! <silent> <unique> <script>
   \ <Plug>DubsBufferFun_ToggleFullscreen_Hack
   \ :call <SID>ToggleFullscreen_Hack()<CR>
 
 "   2. Thunk the <Plug>
-function s:ToggleFullscreen_Hack()
+function! s:ToggleFullscreen_Hack()
   if exists('s:is_fullscreentoggled')
       \ && (1 == s:is_fullscreentoggled)
     set columns=111 lines=44
@@ -466,7 +466,7 @@ let s:is_fullscreentoggled = 0
 "map <silent> ,m :mak<CR><CR>:cw<CR>:call MaximizeIfNotQuickfix()<CR>
 
 " Maximizes the current window if it is not the quickfix window.
-function MaximizeIfNotQuickfix()
+function! MaximizeIfNotQuickfix()
   if (getbufvar(winbufnr(winnr()), "&buftype") != "quickfix")
     wincmd _
   endif
@@ -484,7 +484,7 @@ endfunction
 "au WinEnter * call MaximizeAndResizeQuickfix(12)
 
 " Maximize current window and set the quickfix window to the specified height.
-function MaximizeAndResizeQuickfix(quickfixHeight)
+function! MaximizeAndResizeQuickfix(quickfixHeight)
   " Redraw after executing the function.
   let s:restore_lazyredraw = getbufvar("%", "&lazyredraw")
   set lazyredraw
