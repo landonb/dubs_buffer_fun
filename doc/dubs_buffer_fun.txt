@@ -1,6 +1,6 @@
 *dubs_buffer_fun.txt*	For Vim version 7.4.	Last change: 2015 Jan 23
 
-Dubsacks Vim -- Buffer and Window Commands and Features~
+Dubs Vim -- Buffer and Window Commands and Features~
 
 BUFFER AND WINDOW COMMANDS		*dubs-buffer-fun*
 
@@ -68,7 +68,7 @@ __			A simple buffer list prompt similar to previous.
 ==============================================================================
 3. Window-Related Commands		*dubs-bufff-window-cmds*
 
-Custom Dubsacks Window Command Mappings~
+Custom Dubs Vim Window Command Mappings~
 
 				*<Ctrl-Shift-Up>* *<C-S-Up>* *<C-W>W*
 <Ctrl-Shift-Up>		Move Cursor to Window Above or Leftward.
@@ -79,7 +79,7 @@ Custom Dubsacks Window Command Mappings~
 Common Standard Vim Window Commands~
 
 Note: These commands are standard to Vim; this is just a list
-      of window commands that complement Dubsacks well.
+      of window commands that complement Dubs Vim well.
 
 				*<Alt-w>c* *<M-w>c*
 <Alt-w>c		Close Window.
@@ -105,7 +105,7 @@ Note: These commands are standard to Vim; this is just a list
 				*<Ctrl-w><Shift-K>* *<C-w><S-K>*
 <Ctrl-w><Shift-K>	Move Window Up.
 
-Dubsacks Tab Commands~
+Dubs Vim Tab Commands~
 
 				*<Alt-PageUp>* *<M-PageUp>*
 <Alt-PageUp>		Switch Tabs

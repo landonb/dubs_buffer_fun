@@ -8,20 +8,20 @@
 " -------------------------------------------------------------------
 " Copyright © 2009, 2015, 2017 Landon Bouma.
 "
-" This file is part of Dubsacks.
+" This file is part of Dubs Vim.
 "
-" Dubsacks is free software: you can redistribute it and/or
+" Dubs Vim is free software: you can redistribute it and/or
 " modify it under the terms of the GNU General Public License
 " as published by the Free Software Foundation, either version
 " 3 of the License, or (at your option) any later version.
 "
-" Dubsacks is distributed in the hope that it will be useful,
+" Dubs Vim is distributed in the hope that it will be useful,
 " but WITHOUT ANY WARRANTY; without even the implied warranty
 " of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
 " the GNU General Public License for more details.
 "
 " You should have received a copy of the GNU General Public License
-" along with Dubsacks. If not, see <http://www.gnu.org/licenses/>
+" along with Dubs Vim. If not, see <http://www.gnu.org/licenses/>
 " or write Free Software Foundation, Inc., 51 Franklin Street,
 "                     Fifth Floor, Boston, MA 02110-1301, USA.
 " ===================================================================
@@ -413,7 +413,7 @@ endfunction
 "     "cmap <M-&> <C-C><Plug>DubsHtmlEntities_ToggleLookup<ESC>
 "     "omap <M-&> <C-C><Plug>DubsHtmlEntities_ToggleLookup<ESC>
 
-" SYNC_ME: Dubsacks' <M-????> mappings are spread across plugins. [M-S-2]
+" SYNC_ME: Dubs Vim's <M-????> mappings are spread across plugins. [M-S-2]
 "nmap <M-@> :call ToggleMiniBufExplorer()<CR>
 "imap <M-@> <C-O>:call ToggleMiniBufExplorer()<CR>
 " 2017-11-02: Removed minibufexpl.vim. Because it breaks Vim if you use netrw (:Explore).
@@ -437,9 +437,8 @@ imap <M-@> <C-O>:Lexplore<CR>
 
 " This is such a hack! Just set lines and columns
 " to ridiculous numbers.
-" See dubsacks.vim, which inits cols,ll to 111,44
-" FIXME 111,44 magic numbers, also shared w/ dubsacks.vim
-" SYNC_ME: Dubsacks' <M-????> mappings are spread across plugins. [M-S-4]
+" FIXME 111,44 magic numbers, below.
+" SYNC_ME: Dubs Vim's <M-????> mappings are spread across plugins. [M-S-4]
 ""nmap <silent> <M-$> <Plug>DubsBufferFun_ToggleFullscreen_Hack
 ""imap <silent> <M-$> <C-O><Plug>DubsBufferFun_ToggleFullscreen_Hack
 " 2011.05.20: Disabling. It sucks at what it does.

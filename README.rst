@@ -1,5 +1,5 @@
-Dubsacks Vim — Buffer Fun
-=========================
+Dubs Vim — Buffer Fun
+=====================
 
 About This Plugin
 -----------------
@@ -41,7 +41,7 @@ Buffer and Window Commands
 --------------------------
 
 Note: Some useful, similar Vim commands are listed alongside
-the Dubsacks functions, just to remind us of all the commands
+the Dubs Vim functions, just to remind us of all the commands
 available.
 
 Changing Buffers
@@ -108,10 +108,10 @@ which is mapped to ``<Ctrl-D>`` (see later section).
                                                             more useful.
 ===========================  ============================  ==============================================================================
 
-Dubsacks Window Commands
+Dubs Vim Window Commands
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-These are window commands custom to Dubsacks.
+These are window commands custom to Dubs Vim.
 
 ===========================  ============================  ==============================================================================
  Key Mapping                  Description                   Notes
@@ -127,7 +127,7 @@ Common Window Commands
 ^^^^^^^^^^^^^^^^^^^^^^
 
 These are commonly-used window commands that are part of Vim
-(that is, these commands are not specific to Dubsacks).
+(that is, these commands are not specific to Dubs Vim).
 This is just a refresher...
 
 ===========================  ============================  ==============================================================================
@@ -155,10 +155,10 @@ This is just a refresher...
  ``<Ctrl-w><Shift-J/-K>``     Move Window Down or Up        Like the last two commands but useful when the two windows are split vertically.
 ===========================  ============================  ==============================================================================
 
-Dubsacks Tab Commands
+Dubs Vim Tab Commands
 ^^^^^^^^^^^^^^^^^^^^^
 
-These are tab commands custom to Dubsacks.
+These are tab commands custom to Dubs Vim.
 
 ===========================  ============================  ==============================================================================
  Key Mapping                  Description                   Notes
