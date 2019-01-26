@@ -1,8 +1,11 @@
-Dubs Vim — Buffer Fun
-=====================
+#############################
+Dubs Vim |em_dash| Buffer Fun
+#############################
+
+.. |em_dash| unicode:: 0x2014 .. em dash
 
 About This Plugin
------------------
+=================
 
 Buffer and window navigation features, and ctags!
 
@@ -14,7 +17,7 @@ This plugin defines a few automatic commands:
 - Enable ``hidden`` so buffers are not unloaded when abandoned.
 
 Installation
-------------
+============
 
 Standard Pathogen installation:
 
@@ -38,14 +41,14 @@ Online help:
    :help dubs-buffer-fun
 
 Buffer and Window Commands
---------------------------
+==========================
 
 Note: Some useful, similar Vim commands are listed alongside
 the Dubs Vim functions, just to remind us of all the commands
 available.
 
 Changing Buffers
-^^^^^^^^^^^^^^^^
+----------------
 
 It's easy to switch between buffers, especially the
 most-recently-used buffer, or the next or last buffer
@@ -109,7 +112,7 @@ which is mapped to ``<Ctrl-D>`` (see later section).
 ===========================  ============================  ==============================================================================
 
 Dubs Vim Window Commands
-^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------
 
 These are window commands custom to Dubs Vim.
 
@@ -124,7 +127,7 @@ These are window commands custom to Dubs Vim.
 ===========================  ============================  ==============================================================================
 
 Common Window Commands
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 
 These are commonly-used window commands that are part of Vim
 (that is, these commands are not specific to Dubs Vim).
@@ -156,7 +159,7 @@ This is just a refresher...
 ===========================  ============================  ==============================================================================
 
 Dubs Vim Tab Commands
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
 These are tab commands custom to Dubs Vim.
 
