@@ -269,59 +269,121 @@ command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose('<bang>', '<arg
 " Also make a shortcut at \bd
 nnoremap <silent> <Leader>bd :Bclose<CR>
 
-" Ctrl-Shift-Up/Down Jumps Windows
+" Change Window Focus Key Bindings
 " --------------------------------
 
-let s:was_insert_mode = 0
-function! s:JumpWindow(where, was_insert_mode)
-  let l:was_quickfix = 0
-  if &ft == 'qf'
-    let l:was_quickfix = 1
-  else
-    let s:was_insert_mode = a:was_insert_mode
-  endif
+" Comparing the vim-tmux-navigator functions and Dubs Vim's JumpWindow:
+" - The TmuxNavigate* functions call `wincmd <arg>`, which is just like
+"   executing Ctrl-W <arg> (what JumpWindow calls).
+" - The TmuxNavigate* functions use the wincmd vim-like direction arguments,
+"   e.g., h|j|k|l, but JumpWindow uses the two w|W rotation-like clockwise/
+"   counter-clockwise arguments.
+" - As a consequence, there's slightly different behavior, e.g., consider
+"   two vertically-split panes above a horizontally-split quickfix. From
+"   the quickfix window, a wincmd-k (top) will move to the top pane on the
+"   left, but a wincmd-W will move to the top pane on the right. And then
+"   once the cursor is in one of the top panes, a wincmd-k will not have an
+"   effect, but a wincmd-W will keep cycling the cursor between the panes.
+"
+" 2020-02-08: Here's the original, pre-vim-tmux-navigator functionality:
+"
+"   let s:was_insert_mode = 0
+"   function! s:JumpWindow(where, was_insert_mode)
+"     let l:was_quickfix = 0
+"     if &ft == 'qf'
+"       let l:was_quickfix = 1
+"     else
+"       let s:was_insert_mode = a:was_insert_mode
+"     endif
+"     execute "normal! \<C-W>" . a:where
+"     if &ft == 'qf'
+"       stopinsert
+"     elseif l:was_quickfix == 1 && s:was_insert_mode == 1
+"       startinsert
+"     endif
+"   endfunction
+"
+"   function! s:wire_keys_jump_to_window_previous_and_next()
+"     " This is Ctrl-Shift-Down to Next Window
+"     nnoremap <C-S-Down> :call <SID>JumpWindow('w', 0)<CR>
+"     inoremap <C-S-Down> <C-O>:call <SID>JumpWindow('w', 1)<CR>
+"     cnoremap <C-S-Down> <C-C><C-W>w
+"     onoremap <C-S-Down> <C-C><C-W>w
+"     " And this is Ctrl-Shift-Up to Previous Window
+"     nnoremap <C-S-Up> :call <SID>JumpWindow('W', 0)<CR>
+"     inoremap <C-S-Up> <C-O>:call <SID>JumpWindow('W', 1)<CR>
+"     cnoremap <C-S-Up> <C-C><C-W>W
+"     onoremap <C-S-Up> <C-C><C-W>W
+"   endfunction
+"
+" And here's the simpler, tmux-aware functionality:
+"
+function! s:wire_keys_jump_to_window_directionally()
 
-  execute "normal! \<C-W>" . a:where
+  " Tell vim-tmux-navigator not to create any key bindings.
+  let g:tmux_navigator_no_mappings = 1
 
-  if &ft == 'qf'
-    stopinsert
-  elseif l:was_quickfix == 1 && s:was_insert_mode == 1
-    startinsert
-  endif
+  " Note that many developers map pane navigation to
+  " either Ctrl-h|j|k|l, or to Alt-left/-down/-right/-up,
+  " but not me. I like to use Alt-arrows, but with a twist.
+
+  " Alt-Up/-Down should be intuitive: Switch focus to pane -above/-below.
+
+  nnoremap <silent> <M-Up> :TmuxNavigateUp<cr>
+  inoremap <silent> <M-Up> <C-O>:TmuxNavigateUp<cr>
+
+  nnoremap <silent> <M-Down> :TmuxNavigateDown<cr>
+  inoremap <silent> <M-Down> <C-O>:TmuxNavigateDown<cr>
+
+  " (Becaues I like Alt-Left/-Right to move cursor to -beg/-end of line, use)
+  " Alt-PageUp/-PageDown (*not* -Left/-Right) to switch to pane -left/-right.
+
+  nnoremap <silent> <M-PageUp> :TmuxNavigateLeft<cr>
+  inoremap <silent> <M-PageUp> <C-O>:TmuxNavigateLeft<cr>
+
+  nnoremap <silent> <M-PageDown> :TmuxNavigateRight<cr>
+  inoremap <silent> <M-PageDown> <C-O>:TmuxNavigateRight<cr>
+
+  " Use Alt-\ to toggle focus between current pane and previously-focused pane.
+  " (Many other developers might have this wired to Ctrl-\.)
+
+  nnoremap <silent> <M-\> :TmuxNavigateLast<cr>
+  inoremap <silent> <M-\> <C-O>:TmuxNavigateLast<cr>
+
+  " Ctrl-Shift-Up/-Down cycle focus counter-clockwise/closewise around panes.
+
+  nnoremap <silent> <C-S-Up> :TmuxNavigatePrevious<cr>
+  inoremap <silent> <C-S-Up> <C-O>:TmuxNavigatePrevious<cr>
+
+  nnoremap <silent> <C-S-Down> :TmuxNavigateNext<cr>
+  inoremap <silent> <C-S-Down> <C-O>:TmuxNavigateNext<cr>
+
 endfunction
 
-" This is Ctrl-Shift-Down to Next Window
-noremap <C-S-Down> :call <SID>JumpWindow('w', 0)<CR>
-inoremap <C-S-Down> <C-O>:call <SID>JumpWindow('w', 1)<CR>
-cnoremap <C-S-Down> <C-C><C-W>w
-onoremap <C-S-Down> <C-C><C-W>w
+call <SID>wire_keys_jump_to_window_directionally()
 
-" And this is Ctrl-Shift-Up to Previous Window
-noremap <C-S-Up> :call <SID>JumpWindow('W', 0)<CR>
-inoremap <C-S-Up> <C-O>:call <SID>JumpWindow('W', 1)<CR>
-cnoremap <C-S-Up> <C-C><C-W>W
-onoremap <C-S-Up> <C-C><C-W>W
+" -------
 
-" Karma's an Itch
-" --------------------------------
-" We taketh, and we giveth.
-" Re-map next and previous tab, since we
-" took away Ctrl-PageUp/Down earlier.
+function! s:wire_keys_jump_to_window_progressively()
 
-" This is Alt-PageDown to Next Tab Page
-" NOTE gt is the Normal mode shortcut
-" 2012.06.26: [lb] Does anyone use Tabs ever?
-noremap <M-PageDown> :tabn<CR>
-inoremap <M-PageDown> <C-O>:tabn<CR>
-cnoremap <M-PageDown> <C-C>:tabn<CR>
-onoremap <M-PageDown> <C-C>:tabn<CR>
+  " This is Alt-PageDown to Next Tab Page
+  " NOTE gt is the Normal mode shortcut
+  " 2012.06.26: [lb] Does anyone use Tabs ever?
+  noremap <M-S-Down> :tabn<CR>
+  inoremap <M-S-Down> <C-O>:tabn<CR>
+  cnoremap <M-S-Down> <C-C>:tabn<CR>
+  onoremap <M-S-Down> <C-C>:tabn<CR>
 
-" This is Alt-PageUp to Previous Tab Page
-" NOTE gT is the Normal mode shortcut
-noremap <M-PageUp> :tabN<CR>
-inoremap <M-PageUp> <C-O>:tabN<CR>
-cnoremap <M-PageUp> <C-C>:tabN<CR>
-onoremap <M-PageUp> <C-C>:tabN<CR>
+  " This is Alt-PageUp to Previous Tab Page
+  " NOTE gT is the Normal mode shortcut
+  noremap <M-S-Up> :tabN<CR>
+  inoremap <M-S-Up> <C-O>:tabN<CR>
+  cnoremap <M-S-Up> <C-C>:tabN<CR>
+  onoremap <M-S-Up> <C-C>:tabN<CR>
+
+endfunction
+
+call <SID>wire_keys_jump_to_window_progressively()
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Mini Buffer Explorer Shortcut
@@ -558,4 +620,22 @@ endfunction
 "        double-click merely starts selecting text in the minibufexpl.
 "   inoremap <buffer> <2-LEFTMOUSE> <C-O>:call <SID>MBESelectBuffer(0)<CR><C-O>:<BS>
 "        Oh, well, it's not like I really use minibufexplorer anymore.
+
+" ------------------------------------------------------
+" Vertical-split shortcut
+" ------------------------------------------------------
+
+function s:DubsBufferFun_VerticalSplit_vv()
+  " https://www.bugsnag.com/blog/tmux-and-vim
+  " vv to generate new vertical split
+  nnoremap <silent> vv <C-w>v
+endfunction
+
+" ***
+
+function! s:DubsBufferFun_Main()
+  call <SID>DubsBufferFun_VerticalSplit_vv()
+endfunction
+
+call <SID>DubsBufferFun_Main()
 
