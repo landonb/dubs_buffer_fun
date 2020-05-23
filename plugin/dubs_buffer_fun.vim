@@ -337,6 +337,19 @@ function! s:wire_keys_jump_to_window_directionally()
 
   " (Becaues I like Alt-Left/-Right to move cursor to -beg/-end of line, use)
   " Alt-PageUp/-PageDown (*not* -Left/-Right) to switch to pane -left/-right.
+  " 2020-05-23: (lb): I tried swapping keybindings, trading M-PageUp/-PageDown
+  " dubs_edit_juice's ^/$ motions, M-Left/-Right, but I didn't last more than
+  " fifteen seconds. On common motion I do is Alt-Left followed by one or more
+  " Shift-Down's, to select lines of text from insert mode. Making the switch,
+  " too, I realized how often I also Alt-Right, especially after typing something
+  " new, seeing a typo, going back to fix the typo, then Alt-Right to pick up
+  " where I left off. So many little use cases. I'm a lost cause. I can't have
+  " a pure Alt-Arrow experience for Switching Panes/Windows. Which means I might
+  " stumble trying to switch panes left and right, because Alt-PageUp and
+  " Alt-PageDown don't feel the most natural, but it's way better than my
+  " alternative experience.
+  " FIXME/2020-05-23: In any case, the keybindings themselves should be specified
+  "                   using g:global variables, so that users can easily change.
 
   nnoremap <silent> <M-PageUp> :TmuxNavigateLeft<cr>
   inoremap <silent> <M-PageUp> <C-O>:TmuxNavigateLeft<cr>
