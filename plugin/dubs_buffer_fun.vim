@@ -502,79 +502,14 @@ imap <M-@> <C-O>:Lexplore<CR>
 " FIXME Toggling minibufexplorer in insert mode marks current buffer dirty
 "       2011.01.18 I noticed this yesterday but today I'm not seeing it...
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Application Window Resizing Commands
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 " ------------------------------------------------------
-" Fullscreen
-" ------------------------------------------------------
-
-" This is such a hack! Just set lines and columns
-" to ridiculous numbers.
-
-" 2020-09-02: (lb): I'm enabling this again, for macOS.
-" - I had originally developed it for what was probably Cygwin
-"   on what was probably Windows 7. But I disabled it long ago,
-"   on 2011-05-20.
-"   - I mentioned something about a flicker, or annoying transition
-"     or window animation, but I don't see that on Linux of macOS.
-" - Also, interestingly, calling <Plug> did not work for me, though
-"   that was in the original code (from 2011!) that I uncommented:
-"     " Map <Plug> to an <SID> function
-"     function! s:Map_ToggleFullscreen_Hack()
-"       map! <silent> <unique> <script>
-"         \ <Plug>DubsBufferFun_ToggleFullscreen_Hack
-"         \ :call <SID>ToggleFullscreen_Hack()<CR>
-"     endfunction
-"     call s:Map_ToggleFullscreen_Hack()
-":call <SNR>65_ToggleFullscreen_Hack()
-"noremap <F11> <Plug>DubsBufferFun_ToggleFullscreen_Hack
-"   So instead just calling the function from the map.
-"   - And I can never remember what Plug is all about, anyway!
-
-" NOTE: On Linux Gnome/MATE, it's pretty easy to just double-click the
-"       titlebar to get the same effect as this function.
-"       - On macOS, however, double-clicking the titlebar "zooms" the
-"         window, which really maximizes it, and sends it to a new
-"         Mission Control "space" (like a Gnome Workspace.
-"         - But this author finds switching between spaces is sluggish
-"           and disruptive; I like a good old fashioned Alt-Tab.
-"           So I need this function (key mapping) to achieve a
-"           macOS "fill screen", i.e., not a "full screen".
-
-let s:prev_vim_y = 999
-let s:prev_vim_x = 999
-let s:prev_win_y = 0
-let s:prev_win_x = 0
-function! s:ToggleFullscreen_Hack()
-  if exists('s:is_fullscreentoggled')
-     \ && (1 == s:is_fullscreentoggled)
-    exec "set" . " lines=" . s:prev_vim_y . " columns=" . s:prev_vim_x
-    exec "winpos " . s:prev_win_x . " " . s:prev_win_y
-    let s:is_fullscreentoggled = 0
-  else
-    let s:prev_win_y = getwinposy()
-    let s:prev_win_x = getwinposx()
-    let s:prev_vim_y = &lines
-    let s:prev_vim_x = &columns
-    " (lb): Rather than measure the screen, just go Extra Big.
-    " Gvim/MacVim will figure it out and cap the numbers as
-    " appropriate.
-    set columns=999 lines=999
-    let s:is_fullscreentoggled = 1
-  endif
-endfunction
-let s:is_fullscreentoggled = 0
-
-noremap <F11> :call <SID>ToggleFullscreen_Hack()<CR>
-inoremap <F11> <C-O>:call <SID>ToggleFullscreen_Hack()<CR>
-
-" ------------------------------------------------------
-" Some lame smart-maximize command I don't use...
+" A few commands I don't use...
 " ------------------------------------------------------
 
 " ============== DEPRECATED
+
+" 2021-01-24: Note that `wincmd _` only maximizes height. It will
+" reduce any panes above to 1 line each, plus their status lines.
 
 " Remap ,m to make and open error window if there are any errors. If there
 " weren't any errors, the current window is maximized.
@@ -587,12 +522,9 @@ function! MaximizeIfNotQuickfix()
   endif
 endfunction
 
-" ------------------------------------------------------
-" Another silly smart-resize command I don't use...
-" ------------------------------------------------------
-" http://vim.wikia.com/wiki/Always_keep_quickfix_window_at_specified_height
-
 " ============== DEPRECATED
+
+" http://vim.wikia.com/wiki/Always_keep_quickfix_window_at_specified_height
 
 " Maximize the window after entering it, be sure to keep the quickfix window
 " at the specified height.
