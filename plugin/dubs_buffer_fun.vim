@@ -357,6 +357,96 @@ function! s:wire_keys_jump_to_window_directionally()
   nnoremap <silent> <M-PageDown> :TmuxNavigateRight<cr>
   inoremap <silent> <M-PageDown> <C-O>:TmuxNavigateRight<cr>
 
+  " ++++++++++++++++++++++
+
+  " Wire Ctrl-Command plus Arrow keys to jumping
+  " between panes (whether Vim or Tmux).
+  "
+  " (Where 'Command' refers to macOS 'Command' key,
+  "  Windows 'Start' key, or Linux 'Super_L' or 'Mod4'
+  "  key, what is all essentially the same logical key,
+  "  i.e., the meta key that's not the Ctrl, Alt, or
+  "  Option key, that is unless you're on some crazy
+  "  nerdy keyboard.)
+  "
+  " - Note that these Ctrl-Command-Arrow combos do the same operation
+  "   as the Alt-Up/-Down and Alt-PageUp/-PageDown shortcuts. It's just
+  "   the I've always wanted something a little more consistent (that
+  "   uses all arrow keys rather than PageUp and PageDown), but I got
+  "   stuck not wanting to lost the existing Alt-Left/-Right mappings
+  "   (that I've been accustomed to since early 00's EditPlus days).
+
+  " 2021-01-30: I'm surprised it only took me 10 years to add
+  " Super_L/Command key mappings to Vim... it definately adds
+  " more breathing room to what was a crowed arena of combos
+  " using the few available meta keys and arrow keys!
+  "
+  " - If you read on Stack Overflow, most answers strongly
+  "   suggest *not* overriding the OS key, because of how
+  "   integrated it is with existing, conventional commands.
+  "
+  "   But if you've done your legwork, you'll be fine.
+  "
+  "   - On macOS, you can use the builtin Keyboard Settings
+  "     as well as Karabiner-Elements to remap everything
+  "     how you like -- I went so far as to remap all the
+  "     common Command combos to Control (like Ctrl-C/-V/-X
+  "     and even Ctrl-S/-W/-Q), and then I swapped Option and
+  "     Command, so my macOS keyboard experience is almost
+  "     identical to my Linux experience!
+  "
+  "   - On Linux, not many applications use the Super_L aka
+  "     <Mod4> key. Many applications use Alt key shortcuts,
+  "     e.g., Alt-f to show file menu, and then pressing
+  "     another key to choose a menu option.
+  "
+  "     MATE itself (and other window managers) map some
+  "     Command key shortcuts, but these are easily changed
+  "     via the typical Keyboard Settings dialog.
+  "
+  "   - So go wild! Make use of all the keys your keyboard
+  "     gives you.
+  "
+  "   - I like to use the various shift, meta and arrow key
+  "     combinations to perform cursor and window motions.
+  "     It helps me bounce around text files and application
+  "     windows quickly and painlessly.
+
+  " HINT: I figured out the <T-C-Left> and other <shortcuts> to use
+  "       using Ctrl-q (the Ctrl-v alternative; see :help i_CTRL-V).
+  "
+  "       Press <C-q> and then type the meta+key command you want to
+  "       use, and if it contains special characters, they'll be
+  "       generated. Use the <C-q> output for the map <shortcut>.
+
+  nnoremap <silent> <T-C-Left> :TmuxNavigateLeft<cr>
+  inoremap <silent> <T-C-Left> <C-O>:TmuxNavigateLeft<cr>
+
+  nnoremap <silent> <T-C-Up> :TmuxNavigateUp<cr>
+  inoremap <silent> <T-C-Up> <C-O>:TmuxNavigateUp<cr>
+
+  nnoremap <silent> <T-C-Down> :TmuxNavigateDown<cr>
+  inoremap <silent> <T-C-Down> <C-O>:TmuxNavigateDown<cr>
+
+  nnoremap <silent> <T-C-Right> :TmuxNavigateRight<cr>
+  inoremap <silent> <T-C-Right> <C-O>:TmuxNavigateRight<cr>
+
+  " +++
+
+  nnoremap <silent> <D-C-Left> :TmuxNavigateLeft<cr>
+  inoremap <silent> <D-C-Left> <C-O>:TmuxNavigateLeft<cr>
+
+  nnoremap <silent> <D-C-Up> :TmuxNavigateUp<cr>
+  inoremap <silent> <D-C-Up> <C-O>:TmuxNavigateUp<cr>
+
+  nnoremap <silent> <D-C-Down> :TmuxNavigateDown<cr>
+  inoremap <silent> <D-C-Down> <C-O>:TmuxNavigateDown<cr>
+
+  nnoremap <silent> <D-C-Right> :TmuxNavigateRight<cr>
+  inoremap <silent> <D-C-Right> <C-O>:TmuxNavigateRight<cr>
+
+  " ++++++++++++++++++++++
+
   " Use Alt-\ to toggle focus between current pane and previously-focused pane.
   " (Many other developers might have this wired to Ctrl-\.)
 
