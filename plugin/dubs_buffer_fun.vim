@@ -483,6 +483,33 @@ function! s:wire_keys_jump_to_window_directionally()
   nnoremap <silent> <D-M-Right> :TmuxNavigateRight<cr>
   inoremap <silent> <D-M-Right> <C-O>:TmuxNavigateRight<cr>
 
+  " +++++++
+
+  " 2021-02-01: Hang on a tick, what about the Numpad?
+  "
+  " - The keypad identifiers have a k* prefix.
+  "   - Ref: :h keycodes
+  "   - However, this only works for me without a modifier or with
+  "     Ctrl, e.g., <k4> or <C-k4>, but not with Alt, e.g., <M-k4>.
+  "   - But it works fine with the normal number keys, e.g., <M-4>.
+  "
+  " LATER/2021-02-01: Consolidate all the TmuxNavigate* commands
+  "                   (once you decide which ones work the best).
+
+  nnoremap <silent> <M-4> :TmuxNavigateLeft<cr>
+  inoremap <silent> <M-4> <C-O>:TmuxNavigateLeft<cr>
+
+  nnoremap <silent> <M-8> :TmuxNavigateUp<cr>
+  inoremap <silent> <M-8> <C-O>:TmuxNavigateUp<cr>
+
+  nnoremap <silent> <M-2> :TmuxNavigateDown<cr>
+  inoremap <silent> <M-2> <C-O>:TmuxNavigateDown<cr>
+
+  nnoremap <silent> <M-6> :TmuxNavigateRight<cr>
+  inoremap <silent> <M-6> <C-O>:TmuxNavigateRight<cr>
+
+  " +++
+
   " ++++++++++++++++++++++
 
   " Use Alt-\ to toggle focus between current pane and previously-focused pane.
