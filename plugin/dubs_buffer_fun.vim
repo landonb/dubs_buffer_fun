@@ -445,6 +445,44 @@ function! s:wire_keys_jump_to_window_directionally()
   nnoremap <silent> <D-C-Right> :TmuxNavigateRight<cr>
   inoremap <silent> <D-C-Right> <C-O>:TmuxNavigateRight<cr>
 
+  " +++++++
+
+  " 2021-02-01: Now I'm not so sure, I think Ctrl-Command is
+  " easier to press, but Command-Alt at least uses the Alt
+  " key like the other Alt-{motion} pane jumpers.
+  "
+  " - Since I only started using these maps, and since I
+  "   didn't have anything mapped to Command-Alt combo,
+  "   I'm adding duplicate maps here.
+  "
+  " LATER/2021-02-01: DECIDE: Remove unused pane jumping maps.
+
+  nnoremap <silent> <T-M-Left> :TmuxNavigateLeft<cr>
+  inoremap <silent> <T-M-Left> <C-O>:TmuxNavigateLeft<cr>
+
+  nnoremap <silent> <T-M-Up> :TmuxNavigateUp<cr>
+  inoremap <silent> <T-M-Up> <C-O>:TmuxNavigateUp<cr>
+
+  nnoremap <silent> <T-M-Down> :TmuxNavigateDown<cr>
+  inoremap <silent> <T-M-Down> <C-O>:TmuxNavigateDown<cr>
+
+  nnoremap <silent> <T-M-Right> :TmuxNavigateRight<cr>
+  inoremap <silent> <T-M-Right> <C-O>:TmuxNavigateRight<cr>
+
+  " +++
+
+  nnoremap <silent> <D-M-Left> :TmuxNavigateLeft<cr>
+  inoremap <silent> <D-M-Left> <C-O>:TmuxNavigateLeft<cr>
+
+  nnoremap <silent> <D-M-Up> :TmuxNavigateUp<cr>
+  inoremap <silent> <D-M-Up> <C-O>:TmuxNavigateUp<cr>
+
+  nnoremap <silent> <D-M-Down> :TmuxNavigateDown<cr>
+  inoremap <silent> <D-M-Down> <C-O>:TmuxNavigateDown<cr>
+
+  nnoremap <silent> <D-M-Right> :TmuxNavigateRight<cr>
+  inoremap <silent> <D-M-Right> <C-O>:TmuxNavigateRight<cr>
+
   " ++++++++++++++++++++++
 
   " Use Alt-\ to toggle focus between current pane and previously-focused pane.
