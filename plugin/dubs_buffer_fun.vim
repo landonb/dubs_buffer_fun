@@ -697,12 +697,17 @@ function! MaximizeAndResizeQuickfix(quickfixHeight)
   wincmd _
   " If the current window is the quickfix window
   if (getbufvar(winbufnr(winnr()), "&buftype") == "quickfix")
-    " Maximize previous window, and resize the quickfix window to the
-    " specified height.
-    wincmd p
-    resize
-    wincmd p
-    exe "resize " . a:quickfixHeight
+    " Don't resize if quickfix the only window, or you'll just pull up the
+    " command window from one row tall to the difference between the window
+    " height and quickfixHeight.
+    if winnr('$') > 1
+      " Maximize previous window, and resize the quickfix window to the
+      " specified height.
+      wincmd p
+      resize
+      wincmd p
+      exe "resize " . a:quickfixHeight
+    endif
   else
     " Current window isn't the quickfix window, loop over all windows to
     " find it (if it exists...)
