@@ -557,6 +557,8 @@ call <SID>wire_keys_jump_to_window_progressively()
 " Mini Buffer Explorer Shortcut
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 2017-11-02: Removed minibufexpl.vim.
+" - SNIPD/2020-02-26: Was previously disabled via .vimrc:
+"     let g:miniBufExplAutoStart = 0
 function! s:FindAndSourceMiniBufExpl_DEPRECATED()
   " Alt-Shift-2 // Toggle Mini Buffer Explorer
   " --------------------------------
@@ -740,7 +742,7 @@ endfunction
 " MiniBufExplorer...
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-" MAYBE: I had edited the 6.3.3 minibufexpl source to react to
+" NOTED: I had edited the 6.3.3 minibufexpl source to react to
 "        double-click in insert mode, e.g.,
 "   " 2011.01.19: [lb] Make double-click work when in Insert mode
 "   inoremap <buffer> <2-LEFTMOUSE> <C-O>:call <SID>MBEDoubleClick()<CR>
