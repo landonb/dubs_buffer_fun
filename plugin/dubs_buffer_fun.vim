@@ -292,13 +292,7 @@ function s:DubsBufferFun_VerticalSplit_vv()
   nnoremap <silent> vv <C-w>v
 endfunction
 
+call <SID>DubsBufferFun_VerticalSplit_vv()
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-function! s:DubsBufferFun_Main()
-  call <SID>DubsBufferFun_VerticalSplit_vv()
-endfunction
-
-call <SID>DubsBufferFun_Main()
 
