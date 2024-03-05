@@ -36,9 +36,13 @@ if v:version < 700 || exists('plugin_dubs_buffer_fun') || &cp
 endif
 let plugin_dubs_buffer_fun = 1
 
+" ***
+
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Buffer-related Commands
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" ***
 
 " ------------------------------------------------------
 " Jump to Last Known Cursor Position
@@ -53,6 +57,8 @@ autocmd BufReadPost *
   \ if line("'\"") > 1 && line("'\"") <= line("$") |
   \   exe "normal! g`\"" |
   \ endif
+
+" ***
 
 " ------------------------------------------------------
 " MRU Buffer Jumping
@@ -110,30 +116,7 @@ nnoremap <S-F2> :ls<CR>:b<Space>
 " Caveat: Resets to normal mode:
 inoremap <S-F2> <ESC>:ls<CR>:b<Space>
 
-" Allow toggling between MRU buffers
-" from Insert mode
-" FIXME 2011.01.17 I never use these keys
-" FIXME 2012.06.26 I just tested selecting text and hitting Ctrl-6 and the
-"       screen only blipped at me but I didn't change buffers like F2.
-" FIXME: Broken 'til fixed!
-"inoremap <C-^> <C-O>:e #<CR>
-"noremap <C-6> <C-O>:e #<CR>
-"" cnoremap <F12> <C-C>:e #!<CR>
-"" onoremap <F12> <C-C>:e #<CR>
-
-" 2011.01.17 On my laptop, I've got Browser Fwd
-"            mapped to <End> in ~/.xmodmap.
-"            (Browser Fwd is just above <Right>)
-"            Since Browser back is a special key,
-"            too (delete), and since I use F12 a lot,
-"            I figured I'd map the MRU buffer to
-"            Alt-End, as well, so I can find hit when
-"            I'm on the bottoms of my keyboard.
-" I've got two available keys: M-BrwLeft and BrwRight
-" (Really, M-BrwLeft is M-Delete, and BrwRight is End)
-" I think I'll remap BrwRight to F12 instead of End...
-"map <M-End> :e #<CR>
-"inoremap <M-End> <C-O>:e #<CR>
+" ***
 
 " ------------------------------------------------------
 " Simple Buffer Switcher Prompt
@@ -269,6 +252,9 @@ command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose('<bang>', '<arg
 " Also make a shortcut at \bd
 nnoremap <silent> <Leader>bd :Bclose<CR>
 
+" ***
+
+" --------------------------------
 " Change Window Focus Key Bindings
 " --------------------------------
 
@@ -530,20 +516,19 @@ endfunction
 
 call <SID>wire_keys_jump_to_window_directionally()
 
-" -------
+" ***
 
 function! s:wire_keys_jump_to_window_progressively()
 
   " This is Alt-PageDown to Next Tab Page
-  " NOTE gt is the Normal mode shortcut
-  " 2012.06.26: [lb] Does anyone use Tabs ever?
+  " - ALTLY: You can also gT in Normal mode.
   noremap <M-S-Down> :tabn<CR>
   inoremap <M-S-Down> <C-O>:tabn<CR>
   cnoremap <M-S-Down> <C-C>:tabn<CR>
   onoremap <M-S-Down> <C-C>:tabn<CR>
 
   " This is Alt-PageUp to Previous Tab Page
-  " NOTE gT is the Normal mode shortcut
+  " - ALTLY: You can also gT in Normal mode.
   noremap <M-S-Up> :tabN<CR>
   inoremap <M-S-Up> <C-O>:tabN<CR>
   cnoremap <M-S-Up> <C-C>:tabN<CR>
@@ -553,203 +538,27 @@ endfunction
 
 call <SID>wire_keys_jump_to_window_progressively()
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Mini Buffer Explorer Shortcut
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" 2017-11-02: Removed minibufexpl.vim.
-" - SNIPD/2020-02-26: Was previously disabled via .vimrc:
-"     let g:miniBufExplAutoStart = 0
-function! s:FindAndSourceMiniBufExpl_DEPRECATED()
-  " Alt-Shift-2 // Toggle Mini Buffer Explorer
-  " --------------------------------
-  " First, configure MiniBufExplorer
-  " to show up just above the status line
-  " (at the bottom of the gVim window,
-  "  rather than at the top)
-  let g:miniBufExplSplitBelow = 1
-  " The next variable causes MiniBufExplorer to
-  " auto-load when N eligible buffers are visible;
-  " this is distracting in Gvim, so I set it to
-  " 1 to auto-open at first, but this also doesn't
-  " work well from the command line with just Vim,
-  " so we check our environment first
-  if has("gui_running")
-    let g:miniBufExplorerMoreThanOne = 1
-  else
-    let g:miniBufExplorerMoreThanOne = 2
-  endif
-  " Instead of double-click, single-click to switch to buffer
-  let g:miniBufExplUseSingleClick = 1
-  " Start w/ minibufexpl off
-  " TODO BROKEN It starts with Command-line Vim, whaddup...?
-  "      (Meaning you gotta :q twice to exit, since the first
-  "       :q just closes the MiniBufExpl window)
-  let s:MiniBufExplPath = ""
-  "" NOTE I can't find any other place this is used, but
-  ""      set MiniBufExplLoaded to -1 so MBE loads for gVim
-  ""      but not for terminal Vim (tVim?)
-  "let s:MiniBufExplLoaded = -1
-  " 2017-11-02: Removed minibufexpl.vim.
-  let s:MiniBufExplFile = "minibufexpl.vim"
-  let s:mbef = findfile(s:MiniBufExplFile,
-                        \ pathogen#split(&rtp)[0] . "/**")
-  if s:mbef != ''
-    " Turn into a full path. See :h filename-modifiers
-    let s:MiniBufExplPath = fnamemodify(s:mbef, ":p")
-  elseif filereadable($HOME . "/.vim/plugin/"
-                  \ . s:MiniBufExplFile)
-    " $HOME/.vim is just *nix
-    let s:MiniBufExplPath = $HOME
-                            \ . "/.vim/plugin/"
-                            \ . s:MiniBufExplFile
-  elseif filereadable($USERPROFILE
-                      \ . "/vimfiles/plugin/"
-                      \ . s:MiniBufExplFile)
-    " $HOME/vimfiles is just Windows
-    let s:MiniBufExplPath = $USERPROFILE
-                            \ . "/vimfiles/plugin/"
-                            \ . s:MiniBufExplFile
-  "elseif
-    " TODO What about Mac? Probably just
-    "      like *nix, right?
-  elseif filereadable($VIMRUNTIME
-                      \ . "/plugin/"
-                      \ . s:MiniBufExplFile)
-    " $VIMRUNTIME works for both *nix and Windows
-    let s:MiniBufExplPath = $VIMRUNTIME
-                            \ . "/plugin/"
-                            \ . s:MiniBufExplFile
-  endif
-  if s:MiniBufExplPath != ''
-    execute "source " . s:MiniBufExplPath
-  else
-    " 2017-11-02: Removed minibufexpl.vim.
-    "call confirm('Dubs: Cannot find MiniBuf Explorer', 'OK')
-  endif
-  " 2015.01.15: Deprecated: CMiniBufExplorer, replaced by MBEClose.
-  autocmd VimEnter * nested
-    \ let greatest_buf_no = bufnr('$') |
-    \ if (greatest_buf_no == 1)
-    \     && (bufname(1) == "") |
-    \   execute "MBEClose" |
-    \ endif
-endfunction
+" ***
 
-" New 2011.01.13: Smart toggle. If you don't do this and your Quickfix window
-" is open, toggling the minibuf window will make the Quickfix window taller.
-"   The old way:
-""     nmap <M-@> <Plug>TMiniBufExplorer
-""     imap <M-@> <C-O><Plug>TMiniBufExplorer
-"     nmap <M-@> <Plug>MBEToggle
-"     imap <M-@> <C-O><Plug>MBEToggle
-"     "cmap <M-&> <C-C><Plug>DubsHtmlEntities_ToggleLookup<ESC>
-"     "omap <M-&> <C-C><Plug>DubsHtmlEntities_ToggleLookup<ESC>
+" ------------------------------------------------------
+" Toggle :netrw window
+" ------------------------------------------------------
 
-" SYNC_ME: Dubs Vim's <M-????> mappings are spread across plugins. [M-S-2]
-"nmap <M-@> :call ToggleMiniBufExplorer()<CR>
-"imap <M-@> <C-O>:call ToggleMiniBufExplorer()<CR>
-" 2017-11-02: Removed minibufexpl.vim. Because it breaks Vim if you use netrw (:Explore).
-"nmap <M-@> :ToggleMiniBufExplorer<CR>
-"imap <M-@> <C-O>:ToggleMiniBufExplorer<CR>
-" FIXME/2017-11-02: Find a better way to do this.
-"   1. If netrw open, pressing Alt-Shift-F2 should close the browser.
+" Toggle :netrw window on <S-M-2> aka <M-@>.
+" - FIXME/2024-03-04: When used twice, to open then close netrw, when
+"   netrw is closed, other windows are not resized properly. If project
+"   tray is showing, it's widened, for some reason; if no project tray
+"   and there are 2 vertical windows, after closing netrw, the 1st window
+"   is enlarged to 66% width, and the 2nd window shrank to 33%.
+" - MAYBE/2017-11-02: Add, e.g., Alt-Shift-F2 binding to always close netrw
+"   window (and resize remaining windows equally, ignoring project tray).
+"   - MAYBE: Use fullscreen plug:
+"       ~/.vim/pack/landonb/start/dubs_buffer_fun/plugin/window-resize-fullscreen-toggle.vim
+
 nmap <M-@> :Lexplore<CR>
 imap <M-@> <C-O>:Lexplore<CR>
 
-" FIXME Toggling minibufexplorer in insert mode marks current buffer dirty
-"       2011.01.18 I noticed this yesterday but today I'm not seeing it...
-
-" ------------------------------------------------------
-" A few commands I don't use...
-" ------------------------------------------------------
-
-" ============== DEPRECATED
-
-" 2021-01-24: Note that `wincmd _` only maximizes height. It will
-" reduce any panes above to 1 line each, plus their status lines.
-
-" Remap ,m to make and open error window if there are any errors. If there
-" weren't any errors, the current window is maximized.
-"map <silent> ,m :mak<CR><CR>:cw<CR>:call MaximizeIfNotQuickfix()<CR>
-
-" Maximizes the current window if it is not the quickfix window.
-function! MaximizeIfNotQuickfix()
-  if (getbufvar(winbufnr(winnr()), "&buftype") != "quickfix")
-    wincmd _
-  endif
-endfunction
-
-" ============== DEPRECATED
-
-" http://vim.wikia.com/wiki/Always_keep_quickfix_window_at_specified_height
-
-" Maximize the window after entering it, be sure to keep the quickfix window
-" at the specified height.
-"au WinEnter * call MaximizeAndResizeQuickfix(12)
-
-" Maximize current window and set the quickfix window to the specified height.
-function! MaximizeAndResizeQuickfix(quickfixHeight)
-  " Redraw after executing the function.
-  let s:restore_lazyredraw = getbufvar("%", "&lazyredraw")
-  set lazyredraw
-  " Ignore WinEnter events for now.
-  "let s:restore_eventignore = getbufvar("%", "&ei")
-  set ei=WinEnter
-  " Maximize current window.
-  wincmd _
-  " If the current window is the quickfix window
-  if (getbufvar(winbufnr(winnr()), "&buftype") == "quickfix")
-    " Don't resize if quickfix the only window, or you'll just pull up the
-    " command window from one row tall to the difference between the window
-    " height and quickfixHeight.
-    if winnr('$') > 1
-      " Maximize previous window, and resize the quickfix window to the
-      " specified height.
-      wincmd p
-      resize
-      wincmd p
-      exe "resize " . a:quickfixHeight
-    endif
-  else
-    " Current window isn't the quickfix window, loop over all windows to
-    " find it (if it exists...)
-    let i = 1
-    let cur_bufbr = winbufnr(i)
-    while (cur_bufbr != -1)
-      " If the buffer in window i is the quickfix buffer.
-      if (getbufvar(cur_bufbr, "&buftype") == "quickfix")
-        " Go to the quickfix window, set height to quickfixHeight, and jump to
-        " the previous window.
-        exe i . "wincmd w"
-        exe "resize " . a:quickfixHeight
-        wincmd p
-        break
-      endif
-      let i = i + 1
-      let cur_bufbr = winbufnr(i)
-    endwhile
-  endif
-  "set nolazyredraw
-  set ei-=WinEnter
-  if (!s:restore_lazyredraw)
-    set nolazyredraw
-  endif
-  " this isn't working...
-  "set ei=s:restore_eventignore
-endfunction
-
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" MiniBufExplorer...
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-" NOTED: I had edited the 6.3.3 minibufexpl source to react to
-"        double-click in insert mode, e.g.,
-"   " 2011.01.19: [lb] Make double-click work when in Insert mode
-"   inoremap <buffer> <2-LEFTMOUSE> <C-O>:call <SID>MBEDoubleClick()<CR>
-"        but a similar change to the 6.5.0 source does not work:
-"        double-click merely starts selecting text in the minibufexpl.
-"   inoremap <buffer> <2-LEFTMOUSE> <C-O>:call <SID>MBESelectBuffer(0)<CR><C-O>:<BS>
-"        Oh, well, it's not like I really use minibufexplorer anymore.
+" ***
 
 " ------------------------------------------------------
 " Vertical-split shortcut
@@ -762,6 +571,9 @@ function s:DubsBufferFun_VerticalSplit_vv()
 endfunction
 
 " ***
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function! s:DubsBufferFun_Main()
   call <SID>DubsBufferFun_VerticalSplit_vv()
