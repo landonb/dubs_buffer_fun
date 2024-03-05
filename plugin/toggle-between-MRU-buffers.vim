@@ -27,27 +27,21 @@ let g:plugin_dubs_buffer_fun_toggle_between_mru = 1
 " MRU Buffer Jumping
 " ------------------------------------------------------
 
-" Map F12 to Ctrl-^, to toggle between the
-" current buffer and the last used buffer.
-" But first!
-"   Turn on hidden, so if we're on a modified
-"   buffer, we can hide it without getting a
-"   warning
-set hidden
-" 2011.05.20: I don't use this for jumping buffers.
-"             I use F2 and the pg-right key.
-"map <F12> :e #<CR>
-"inoremap <F12> <C-O>:e #<CR>
-"" cnoremap <F12> <C-C>:e #!<CR>
-"" onoremap <F12> <C-C>:e #<CR>
-
-" My left hand felt left out, so I mapped Ftoo, 2.
-" Note that when text is selected, F1 sends it to par.
-"nnoremap <F2> :e #<CR>
-"inoremap <F2> <C-O>:e #<CR>
-nnoremap <F2> :call <SID>Switch_MRU_Safe()<CR>
-inoremap <F2> <C-O>:call <SID>Switch_MRU_Safe()<CR>
+" Vim has 2 built-in MRU buffer jumpers:
 "
+"   :help edit_#
+"   - Edit the [count]th buffer (as shown by |:files|).
+"     This command does the same as [count] CTRL-^. 
+"     But `:e #` doesn't work if the alternate buffer doesn't
+"     have a file name, while CTRL-^ still works then.
+"
+"   :help CTRL-^*
+"   - It is equivalent to `:e #`, except that it also
+"     works when there is no file name.
+"
+" But here we bake our own approach, to deal with
+" special buffers properly.
+
 function! s:Switch_MRU_Safe()
   " Check the current buffer for specialness.
   if ((&buflisted == 0)
@@ -71,4 +65,13 @@ function! s:Switch_MRU_Safe()
     echomsg "No MRU yet."
   endif
 endfunction
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" Enable hidden, in case user is viewing modified buffer. This
+" lets us hide modified buffer without Vim emitting a warning.
+set hidden
+
+nnoremap <F2> :call <SID>Switch_MRU_Safe()<CR>
+inoremap <F2> <C-O>:call <SID>Switch_MRU_Safe()<CR>
 
