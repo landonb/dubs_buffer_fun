@@ -48,25 +48,6 @@ let g:plugin_dubs_buffer_fun = 1
 " Buffer-related Commands
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-" ------------------------------------------------------
-" Toggle :netrw window
-" ------------------------------------------------------
-
-" Toggle :netrw window on <S-M-2> aka <M-@>.
-" - FIXME/2024-03-04: When used twice, to open then close netrw, when
-"   netrw is closed, other windows are not resized properly. If project
-"   tray is showing, it's widened, for some reason; if no project tray
-"   and there are 2 vertical windows, after closing netrw, the 1st window
-"   is enlarged to 66% width, and the 2nd window shrank to 33%.
-" - MAYBE/2017-11-02: Add, e.g., Alt-Shift-F2 binding to always close netrw
-"   window (and resize remaining windows equally, ignoring project tray).
-"   - MAYBE: Use fullscreen plug:
-"       ~/.vim/pack/landonb/start/dubs_buffer_fun/plugin/window-resize-fullscreen-toggle.vim
-
-nmap <M-@> :Lexplore<CR>
-imap <M-@> <C-O>:Lexplore<CR>
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
