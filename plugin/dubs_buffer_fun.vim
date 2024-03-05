@@ -115,6 +115,8 @@ function! s:Switch_MRU_Safe()
   endif
 endfunction
 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 " Tip from http://eseth.org/2007/vim-buffers.html
 " Show buffer list and prompt for buffer number or
 " (partial) name.
@@ -134,8 +136,11 @@ inoremap <S-F2> <ESC>:ls<CR>:b<Space>
 "   http://www.vim.org/scripts/script.php?script_id=1325
 "   :(respectively)
 " but this is simpl the best.
-" 2015.01.08: Actually, the built-in buffer list prompt is
-" better. See Shift-F2, which is mapped to :ls<CR>:b<Space>
+"
+" SAVVY/2015-01-08: The built-in buffer list and :b prompt does
+" essentially the same as this function. See Shift-F2, which calls
+" :ls<CR>:b<Space>
+" - So <__> and <S-F2> are effectively redundant.
 
 function! s:SimplBuffrListr()
   " Show all buffers, one per line, in the
