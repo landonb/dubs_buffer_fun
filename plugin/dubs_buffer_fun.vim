@@ -6,7 +6,7 @@
 " License: GPLv3
 " vim:tw=0:ts=2:sw=2:et:norl:
 " -------------------------------------------------------------------
-" Copyright © 2009, 2015, 2017 Landon Bouma.
+" Copyright © 2009, 2015, 2017, 2024 Landon Bouma.
 "
 " This file is part of Dubs Vim.
 "
