@@ -29,12 +29,18 @@
 " ------------------------------------------
 " Startguard:
 
-" Only load if Vim is at least version 7 and
-" if the script has not already been loaded
-if v:version < 700 || exists('plugin_dubs_buffer_fun') || &cp
+" Only load if not prev. loaded, if is more
+" Vi-compatible, and Vim at least version 7.
+"
+" YOU: Uncomment next 'unlet', then <F9> to reload this file.
+"      (Iff: https://github.com/landonb/vim-source-reloader)
+"
+" silent! unlet g:plugin_dubs_buffer_fun
+
+if exists('g:plugin_dubs_buffer_fun') || &cp || v:version < 700
   finish
 endif
-let plugin_dubs_buffer_fun = 1
+let g:plugin_dubs_buffer_fun = 1
 
 " ***
 
