@@ -45,10 +45,11 @@ let g:plugin_dubs_buffer_fun_toggle_between_mru = 1
 
 function! s:Switch_MRU_Safe()
   " Check the current buffer for specialness.
-  if ((&buflisted == 0)
-      \ || (&buftype == 'quickfix')
-      \ || (&modifiable == 0)
-      \ || (bufname('%') == '-MiniBufExplorer-'))
+  if ((&filetype != 'netrw')
+      \ && ((&buflisted == 0)
+      \  || (&buftype == 'quickfix')
+      \  || (&modifiable == 0)
+      \  || (bufname('%') == '-MiniBufExplorer-')))
     echomsg "No MRU for special buffer/window."
   " The special '#' is what Vim calls the alternate-file.
   elseif (expand('#') != '')
