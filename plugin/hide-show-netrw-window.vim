@@ -38,6 +38,8 @@ let g:plugin_dubs_buffer_fun_hide_show_netrw_window = 1
 "   - MAYBE: Use fullscreen plug:
 "       ~/.vim/pack/landonb/start/dubs_buffer_fun/plugin/window-resize-fullscreen-toggle.vim
 
-nmap <M-@> :Lexplore<CR>
-imap <M-@> <C-O>:Lexplore<CR>
+" SYNC_ME: Dubs Vim's <M-????> mappings are spread across plugins. [M-S-2]
+
+nmap <M-@> :Lexplore<CR>:au WinLeave <buffer> quit<CR>
+imap <M-@> <C-O>:Lexplore<CR>:au WinLeave <buffer> quit<CR>
 
