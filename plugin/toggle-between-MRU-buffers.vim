@@ -35,6 +35,7 @@ let g:plugin_dubs_buffer_fun_toggle_between_mru = 1
 "     But `:e #` doesn't work if the alternate buffer doesn't
 "     have a file name, while CTRL-^ still works then.
 "
+"   :help CTRL-6
 "   :help CTRL-^*
 "   - It is equivalent to `:e #`, except that it also
 "     works when there is no file name.
