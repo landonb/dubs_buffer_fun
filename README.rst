@@ -124,12 +124,7 @@ which is mapped to ``<Ctrl-D>`` (see later section).
 ---------------------------  ----------------------------  ------------------------------------------------------------------------------
  ``__``                       Show buffer list prompt       Similar to ``<Shift-F2>``, but simpler.
 ---------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``<Shift-Alt-2>``            Toggle                        This toggles the MiniBuf Explorer window, but this buffer explorer
-                              MiniBufExplorer               loses its utility as the number of open buffers grows.
-                                                            You might find something like :CommandT
-                                                            (mapped to ``<Ctrl-D>`` in
-                                                            `dubs_file_finder <https://github.com/landonb/dubs_buffer_fun>`__)
-                                                            more useful.
+ ``<Shift-Alt-2>``            Toggle ``:netrw``             This toggles the ``:netrw`` Explorer window.
 ===========================  ============================  ==============================================================================
 
 Dubs Vim Window Commands
