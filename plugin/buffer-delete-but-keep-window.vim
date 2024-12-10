@@ -120,5 +120,13 @@ endfunction
 command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose('<bang>', '<args>')
 
 " Also make a shortcut at \bd
-nnoremap <silent> <Leader>bd :Bclose<CR>
+" - ISOFF/2024-12-09: I never use <Leader>bd to close files, normally
+"   I <Alt-f>c, per another plugin's normal *and insert* mode maps:
+"     ~/.vim/pack/landonb/start/dubs_appearance/plugin/mimic_menu_keymap.vim
+"   There are also no other <Leader>b maps, so this one was kinda lonely,
+"   and difficult to remember (was there a mnemonic, maybe Buffer-Delete?
+"   Which sounds more like the built-in :bw (buffer-wipe) command, anyway).
+if 0
+  nnoremap <silent> <Leader>bd :Bclose<CR>
+endif
 
