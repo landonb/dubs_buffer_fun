@@ -1,9 +1,11 @@
-" Author: Landon Bouma (landonb &#x40; retrosoft &#x2E; com)
-" Project Page: https://github.com/landonb/dubs_buffer_fun
-" License: GPLv3
 " vim:tw=0:ts=2:sw=2:et:norl:
+" Author: Landon Bouma <https://tallybark.com/> 
+" Project: https://github.com/embrace-vim/vim-buffer-delights#🍧
+" License: vim-buffer-delights by Landon Bouma is marked with CC0 1.0
+"   Copyright © 2009, 2015, 2017, 2024 Landon Bouma.
+"   https://creativecommons.org/publicdomain/zero/1.0/
+
 " -------------------------------------------------------------------
-" Copyright � 2009, 2015, 2017, 2024 Landon Bouma.
 
 " ------------------------------------------
 " Startguard:
