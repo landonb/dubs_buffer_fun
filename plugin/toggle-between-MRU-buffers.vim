@@ -46,22 +46,14 @@ let g:plugin_dubs_buffer_fun_toggle_between_mru = 1
 " special buffers properly.
 
 function! s:Switch_MRU_Safe()
-  " Check the current buffer for specialness.
-  if ((&filetype != 'netrw')
-      \ && ((&buflisted == 0)
-      \  || (&buftype == 'quickfix')
-      \  || (&modifiable == 0)
-      \  || (bufname('%') == '-MiniBufExplorer-')))
-    echomsg "No MRU for special buffer/window."
+  " Check the current buffer for normality.
+  if !g:embrace#windows#IsNormalBuffer('%')
+    echomsg "No MRU for special buffer."
   " The special '#' is what Vim calls the alternate-file.
   elseif (expand('#') != '')
-    " Check the alternate buffer for specialness.
-    if ((buflisted(expand('#')) == 0)
-        \ || (bufname(0) == '-MiniBufExplorer-'))
-        " [lb] isn't sure of an easy way to get these settings for other buf.
-        " \ || (&buftype == 'quickfix')
-        " \ || (&modifiable == 0)
-      echomsg "The MRU is a special buffer; cannot switch."
+    " Check the alternate buffer for normality.
+    if !g:embrace#windows#IsNormalBuffer('#')
+      echomsg "MRU is a special buffer; cannot switch."
     else
       execute "edit #"
     endif
