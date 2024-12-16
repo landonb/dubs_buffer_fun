@@ -23,7 +23,7 @@ if exists('g:plugin_dubs_buffer_fun_hide_show_netrw_window') || &cp || v:version
 endif
 let g:plugin_dubs_buffer_fun_hide_show_netrw_window = 1
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" -------------------------------------------------------------------
 
 " ------------------------------------------------------
 " Toggle :netrw window

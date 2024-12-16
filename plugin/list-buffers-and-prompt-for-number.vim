@@ -23,7 +23,7 @@ if exists('g:plugin_dubs_buffer_fun_list_buffers_and_prompt') || &cp || v:versio
 endif
 let g:plugin_dubs_buffer_fun_list_buffers_and_prompt = 1
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" -------------------------------------------------------------------
 
 " --------------------------------------------------------
 " List Buffers and Prompt for Buffer Number — The Easy Way
@@ -36,7 +36,7 @@ nnoremap <S-F2> :ls<CR>:b<Space>
 " Caveat: Resets to normal mode:
 inoremap <S-F2> <ESC>:ls<CR>:b<Space>
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" -------------------------------------------------------------------
 
 " ---------------------------------------------------------
 " Simple Buffer Switcher Prompt — The Slighly Less Easy Way

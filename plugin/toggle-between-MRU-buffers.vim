@@ -23,7 +23,7 @@ if exists('g:plugin_dubs_buffer_fun_toggle_between_mru') || &cp || v:version < 7
 endif
 let g:plugin_dubs_buffer_fun_toggle_between_mru = 1
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" -------------------------------------------------------------------
 
 " ------------------------------------------------------
 " MRU Buffer Jumping
@@ -70,7 +70,7 @@ function! s:Switch_MRU_Safe()
   endif
 endfunction
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" -------------------------------------------------------------------
 
 " Enable hidden, in case user is viewing modified buffer. This
 " lets us hide modified buffer without Vim emitting a warning.

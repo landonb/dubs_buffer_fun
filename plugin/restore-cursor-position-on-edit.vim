@@ -23,7 +23,7 @@ if exists('g:plugin_dubs_buffer_fun_restore_cursor_position') || &cp || v:versio
 endif
 let g:plugin_dubs_buffer_fun_restore_cursor_position = 1
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" -------------------------------------------------------------------
 
 " ------------------------------------------------------
 " Jump to Last Known Cursor Position

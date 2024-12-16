@@ -23,7 +23,7 @@ if exists('g:plugin_dubs_buffer_fun_navigation_mappings') || &cp || v:version < 
 endif
 let g:plugin_dubs_buffer_fun_navigation_mappings = 1
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" -------------------------------------------------------------------
 
 " --------------------------------
 " Change Window Focus Key Bindings
@@ -285,7 +285,7 @@ function! s:wire_keys_jump_to_window_directionally()
 
 endfunction
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" -------------------------------------------------------------------
 
 function! s:wire_keys_jump_to_window_progressively()
 
@@ -305,7 +305,7 @@ function! s:wire_keys_jump_to_window_progressively()
 
 endfunction
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" -------------------------------------------------------------------
 
 call <SID>wire_keys_jump_to_window_directionally()
 

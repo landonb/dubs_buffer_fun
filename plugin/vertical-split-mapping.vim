@@ -23,7 +23,7 @@ if exists('g:plugin_dubs_buffer_fun_vertical_split_mapping') || &cp || v:version
 endif
 let g:plugin_dubs_buffer_fun_vertical_split_mapping = 1
 
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" -------------------------------------------------------------------
 
 " ------------------------------------------------------
 " Vertical-split shortcut
