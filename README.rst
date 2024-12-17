@@ -1,13 +1,11 @@
-#############################
-Dubs Vim |em_dash| Buffer Fun
-#############################
-
-.. |em_dash| unicode:: 0x2014 .. em dash
+################################################
+Delightful Buffer and Window Features for Vim 🍧
+################################################
 
 About This Plugin
 =================
 
-Buffer and window navigation features, and ctags!
+Buffer and window navigation features for Vim.
 
 This plugin defines a few automatic commands:
 

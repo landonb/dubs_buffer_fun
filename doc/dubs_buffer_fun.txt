@@ -1,6 +1,6 @@
 *dubs_buffer_fun.txt*	For Vim version 7.4.	Last change: 2015 Jan 23
 
-Dubs Vim -- Buffer and Window Commands and Features~
+VIM BUFFER DELIGHTS 🍧 Delightful Buffer and Window Features~
 
 BUFFER AND WINDOW COMMANDS		*dubs-buffer-fun*
 
@@ -11,7 +11,7 @@ BUFFER AND WINDOW COMMANDS		*dubs-buffer-fun*
 ==============================================================================
 1. About This Plugin			*dubs-bufff-about*
 
-Buffer and window navigation features, and ctags!
+Buffer and window navigation features for Vim.
 
 This plugin defines a few automatic commands:
 
