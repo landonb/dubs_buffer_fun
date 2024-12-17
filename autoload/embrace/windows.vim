@@ -114,11 +114,18 @@ endfunction
 
 " -------------------------------------------------------------------
 
-function! g:embrace#windows#FindNextWindowWithNormalBuffer() abort
+function! g:embrace#windows#FindNextWindowWithNormalBuffer(start_winnr = 0) abort
   let l:found_winnr = 0
 
-  let l:start_winnr = winnr()
   let l:final_winnr = winnr('$')
+
+  if a:start_winnr == 0
+    let l:start_winnr = winnr()
+  elseif a:start_winnr > l:final_winnr
+    let l:start_winnr = 1
+  else
+    let l:start_winnr = a:start_winnr
+  endif
 
   let l:visit_winnr = l:start_winnr
 
@@ -153,7 +160,7 @@ endfunction
 " -------------------------------------------------------------------
 
 function! g:embrace#windows#FocusCursorInNormalBufferWindow() abort
-  let l:found_winnr = g:embrace#windows#FindNextWindowWithNormalBuffer()
+  let l:found_winnr = g:embrace#windows#FindNextWindowWithNormalBuffer(winnr())
 
   " Check if there was only one window found and if it's special.
   if l:found_winnr == 0
