@@ -14,6 +14,17 @@ This plugin defines a few automatic commands:
 
 - Enable ``hidden`` so buffers are not unloaded when abandoned.
 
+Disablement
+===========
+
+If you'd just like to use the ``autoload/`` functions, or nothing
+at all, set the following global to disable all command maps
+and ``plugin/`` setup:
+
+.. code-block::
+
+  let g:vim_buffer_delights_disable = 1
+
 Buffer and Window Commands
 ==========================
 

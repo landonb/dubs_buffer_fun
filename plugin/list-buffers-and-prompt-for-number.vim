@@ -21,6 +21,13 @@ let g:plugin_dubs_buffer_fun_list_buffers_and_prompt = 1
 
 " -------------------------------------------------------------------
 
+if exists('g:vim_buffer_delights_disable') && g:vim_buffer_delights_disable
+
+  finish
+endif
+
+" -------------------------------------------------------------------
+
 " --------------------------------------------------------
 " List Buffers and Prompt for Buffer Number — The Easy Way
 " --------------------------------------------------------

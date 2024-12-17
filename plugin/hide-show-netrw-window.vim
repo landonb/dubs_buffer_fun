@@ -21,6 +21,13 @@ let g:plugin_dubs_buffer_fun_hide_show_netrw_window = 1
 
 " -------------------------------------------------------------------
 
+if exists('g:vim_buffer_delights_disable') && g:vim_buffer_delights_disable
+
+  finish
+endif
+
+" -------------------------------------------------------------------
+
 " ------------------------------------------------------
 " Toggle :netrw window
 " ------------------------------------------------------

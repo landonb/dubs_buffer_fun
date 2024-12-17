@@ -22,6 +22,13 @@ let g:plugin_dubs_buffer_fun_restore_cursor_position = 1
 
 " -------------------------------------------------------------------
 
+if exists('g:vim_buffer_delights_disable') && g:vim_buffer_delights_disable
+
+  finish
+endif
+
+" -------------------------------------------------------------------
+
 " ------------------------------------------------------
 " Jump to Last Known Cursor Position
 " ------------------------------------------------------
