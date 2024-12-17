@@ -152,7 +152,7 @@ endfunction
 
 " -------------------------------------------------------------------
 
-function! g:embrace#windows#OpenFileInNonSpecialBufferAndFocus() abort
+function! g:embrace#windows#FocusCursorInNormalBufferWindow() abort
   let l:found_winnr = g:embrace#windows#FindNextWindowWithNormalBuffer()
 
   " Check if there was only one window found and if it's special.
