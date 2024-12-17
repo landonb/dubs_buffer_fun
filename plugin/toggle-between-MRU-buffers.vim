@@ -7,20 +7,16 @@
 
 " -------------------------------------------------------------------
 
-" ------------------------------------------
-" Startguard:
-
-" Only load if not prev. loaded, if is more
-" Vi-compatible, and Vim at least version 7.
+" USAGE: Unlet var (or nix finish) & press <F9> to reload this plugin.
+" USING: https://github.com/landonb/vim-source-reloader#↩️
 "
-" YOU: Uncomment next 'unlet', then <F9> to reload this file.
-"      (Iff: https://github.com/landonb/vim-source-reloader)
-"
-" silent! unlet g:plugin_dubs_buffer_fun_toggle_between_mru
+"  silent! unlet g:plugin_dubs_buffer_fun_toggle_between_mru
 
 if exists('g:plugin_dubs_buffer_fun_toggle_between_mru') || &cp || v:version < 700
+
   finish
 endif
+
 let g:plugin_dubs_buffer_fun_toggle_between_mru = 1
 
 " -------------------------------------------------------------------
