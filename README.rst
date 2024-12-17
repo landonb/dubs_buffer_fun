@@ -14,8 +14,8 @@ This plugin defines a few automatic commands:
 
 - Enable ``hidden`` so buffers are not unloaded when abandoned.
 
-Disablement
-===========
+Disable The Plugin
+==================
 
 If you'd just like to use the ``autoload/`` functions, or nothing
 at all, set the following global to disable all command maps
@@ -25,19 +25,11 @@ and ``plugin/`` setup:
 
   let g:vim_buffer_delights_disable = 1
 
-Buffer and Window Commands
-==========================
+Buffer-Related Commands
+=======================
 
-Note: Some useful, similar Vim commands are listed alongside
-the Dubs Vim functions, just to remind us of all the commands
-available.
-
-Changing Buffers
-----------------
-
-It's easy to switch between buffers, especially the
-most-recently-used buffer, or the next or last buffer
-in the history stack.
+Switching MRU buffers
+---------------------
 
 ===========================  ============================  ==============================================================================
  Key Mapping                  Description                   Notes
@@ -45,33 +37,23 @@ in the history stack.
  ``<F2>``                     Toggle MRU Buffer             Jump to the most recently used buffer:
                                                             Loads the last loaded buffer in the current window (think ``:e #``).
                                                             I.e., if you hit ``<F2>`` twice, you'll be looking at the same buffer.
----------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``<Ctrl-J>``                 Traverse Buffer History       Traverses the buffer history backwards.
-                                                            Hint: If you find yourself down a rabbit hole, opening file after file,
-                                                            and you can't remember what you were doing, hit ``<Ctrl-J>`` to crawl out of it.
-                                                            Caveat: Splitting and Closing windows can mess up the buffer history, 'natch.
----------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``<Ctrl-K>``                 Forward Traverse History      Traverses the buffer history forwards; opposite of ``<Ctrl-J>``.
----------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``<Ctrl-Tab>``               Traverse BufList              ``<Ctrl-Tab>`` and ``<Ctrl-Shift-Tab>``
-                                                            are similar to ``<Ctrl-J>`` and ``<Ctrl-K>``
-                                                            but traverse the list of buffers in the order
-                                                            that they were originally loaded.
-                                                            Note: In default Vim, these commands
-                                                            move the cursor between windows,
-                                                            i.e., like ``<Alt-Shift-Up>`` and ``<Alt-Shift-Down>`` now do.
-                                                            ([lb] admits that Ctrl-Tab switches tabs in a lot of apps
-                                                            (vis-à-vis web browsers) but I've never found tabs to be
-                                                            useful in Vim, other than to run the ``:TabMessage`` command;
-                                                            I switch windows and buffers, not tabs.)
----------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``<Ctrl-Shift-Tab>``         Reverse Traverse BufList      See previous notes.
 ===========================  ============================  ==============================================================================
 
-You can also easily switch buffers by filename,
-but you might find it easier to always use a
-more general file-open command, like ``:CommandT``,
-which is mapped to ``<Ctrl-D>`` (see later section).
+Find buffers by name
+--------------------
+
+===========================  ============================  ==============================================================================
+ Key Mapping                  Description                   Notes
+===========================  ============================  ==============================================================================
+ ``<Shift-F2>``               Show buffer list and          Calls ``:ls<CR>:b<Space>`` so you can see the list of buffers and
+                              prompt for number             then either type a buffer name or type (part of) a filename
+                              or (partial) name             followed by <enter> to switch buffers.
+---------------------------  ----------------------------  ------------------------------------------------------------------------------
+ ``__``                       Show buffer list prompt       Similar to ``<Shift-F2>``, but simpler.
+===========================  ============================  ==============================================================================
+
+Related Vim commands
+--------------------
 
 ===========================  ============================  ==============================================================================
  Key Mapping                  Description                   Notes
@@ -79,79 +61,158 @@ which is mapped to ``<Ctrl-D>`` (see later section).
  ``:b filena<CR>``            Switch to Buffer
                               by (partial) Name
 ---------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``:ls``                      List buffer numbers           Hint: ``map <S-F2> :ls<CR>:b<Space>`` is a nifty switcheroo.
+ ``:ls``                      List buffer numbers           Hint: ``map <S-F2> :ls<CR>:b<Space>`` is a nifty *switcheroo*.
                               and names
----------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``<Shift-F2>``               Show buffer list and          Calls ``:ls<CR>:b<Space>`` so you can see the list of buffers and
-                              prompt for number             then either type a buffer name or type (part of) a filename
-                              or (partial) name             followed by <enter> to switch buffers.
----------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``__``                       Show buffer list prompt       Similar to ``<Shift-F2>``, but simpler.
----------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``<Shift-Alt-2>``            Toggle ``:netrw``             This toggles the ``:netrw`` Explorer window.
 ===========================  ============================  ==============================================================================
 
-Dubs Vim Window Commands
-------------------------
+Window-Related Commands
+=======================
 
-These are window commands custom to Dubs Vim.
+Window-related commands
+-----------------------
 
 ===========================  ============================  ==============================================================================
  Key Mapping                  Description                   Notes
 ===========================  ============================  ==============================================================================
  ``<Ctrl-Shift-Up>``          Move Cursor to Window         Moves the cursor to the window above the current window,
                               Above or Leftward             or the window to the left.
+                                                            - Note: ``mswin.vim`` wires ``<Shift-Ctrl-Tab>`` to same.
 ---------------------------  ----------------------------  ------------------------------------------------------------------------------
  ``<Ctrl-Shift-Down>``        Move Cursor to Window         Moves the cursor to the window to the right of
                               to Right or Below             or below the current window.
+                                                            - Note: ``mswin.vim`` wires ``<Ctrl-Tab>`` to same.
+---------------------------  ----------------------------  ------------------------------------------------------------------------------
+ ``vv``                       New Vertical Split            Creates a new vertical-split window, with the
+                                                            same buffer visible in each window.
 ===========================  ============================  ==============================================================================
 
-Common Window Commands
-----------------------
+Dubs Vim ``netrw`` Commands
+---------------------------
 
-These are commonly-used window commands that are part of Vim
-(that is, these commands are not specific to Dubs Vim).
-This is just a refresher...
-
-===========================  ============================  ==============================================================================
- Key Mapping                  Description                   Notes
-===========================  ============================  ==============================================================================
- ``<Alt-w>c``                 Close Window                  Closes the window that the cursor is in.
----------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``<Alt-w>o``                 "Only" Window                 Closes all window except the one containing the cursor.
----------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``<Alt-w>p``                 Horizontal Split              Creates a new window by splitting the current window in half along the horizon.
----------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``<Alt-w>s``                 Vertical Split                Creates a new window by splitting the current window in half along the vertical
-                                                            axis. Hint: If you want to compare two files side-by-side, open one file and
-                                                            then then other file, hit ``<Alt-w>s`` to split the window, and then hit
-                                                            ``<F2>`` to jump to the first buffer; now you're looking at both buffers.
----------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``<Ctrl-w><Shift-L>``        Move Window to the Left       Hint: If you have two windows split horizontally and the cursor is in the
-                                                            right window, use ``<Ctrl-W><Shift-L>`` to essentially swap windows, so the
-                                                            left-side window and buffer will now be on the right, and vice versa.
----------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``<Ctrl-w><Shift-R>``        Move Window to the Right      Opposite of ``<Ctrl-W><Shift-L>``: If you have the cursor in the left-most window,
-                                                            swap positions with the right-most window, if you've got two horizontally
-                                                            split windows showing.
----------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``<Ctrl-w><Shift-J/-K>``     Move Window Down or Up        Like the last two commands but useful when the two windows are split vertically.
-===========================  ============================  ==============================================================================
-
-Dubs Vim Tab Commands
----------------------
-
-These are tab commands custom to Dubs Vim.
+These are window commands custom to Dubs Vim.
 
 ===========================  ============================  ==============================================================================
  Key Mapping                  Description                   Notes
 ===========================  ============================  ==============================================================================
- ``<Alt-PageUp>``             Switch Tabs                   Changes to the next tab.
-                                                            I [lb] almost never uses tabs in Vim -- the exception being ``:TabMessage``.
-                                                            But if you use tabs, ``<Alt-PageUp>`` and ``<Alt-PageDown>``
-                                                            can be used to iterate through the list of tabs.
+ ``<Shift-Alt-2>``            Toggle ``:netrw``             Toggles the ``netrw`` ``:Lexplore`` window.
+===========================  ============================  ==============================================================================
+
+tmux-Compatible Navigation Commands
+===================================
+
+``<Ctrl-Up/Down/PageUp/PageDown>`` window jumpers
+-------------------------------------------------
+
+===========================  ============================  ==============================================================================
+ Key Mapping                  Description                   Notes
+===========================  ============================  ==============================================================================
+ ``<Alt-Up>``                 Move Cursor to Window         Switch to Vim or tmux window above.
+                              Above
 ---------------------------  ----------------------------  ------------------------------------------------------------------------------
- ``<Alt-PageDown>``           Switch Tabs                   The opposite of ``<Alt-PageUp>``; changes to previous tab.
+ ``<Alt-Down>``               Move Cursor to Window         Switch to Vim or tmux window below.
+                              Below
+---------------------------  ----------------------------  ------------------------------------------------------------------------------
+ ``<Alt-PageUp>``             Move Cursor to Window         Switch to Vim or tmux window leftward.
+                              Leftward
+---------------------------  ----------------------------  ------------------------------------------------------------------------------
+ ``<Alt-PageDown>``           Move Cursor to Window         Switch to Vim or tmux window rightward.
+                              Rightward
+===========================  ============================  ==============================================================================
+
+``<Cmd-Ctrl-Up/Down/Left/Right>`` window jumpers
+------------------------------------------------
+
+===========================  ============================  ==============================================================================
+ Key Mapping                  Description                   Notes
+===========================  ============================  ==============================================================================
+ ``<Cmd-Ctrl-Up>``            Move Cursor to Window         Switch to Vim or tmux window above.
+                              Above
+---------------------------  ----------------------------  ------------------------------------------------------------------------------
+ ``<Cmd-Ctrl-Down>``          Move Cursor to Window         Switch to Vim or tmux window below.
+                              Below
+---------------------------  ----------------------------  ------------------------------------------------------------------------------
+ ``<Cmd-Ctrl-Left>``          Move Cursor to Window         Switch to Vim or tmux window leftward.
+                              Leftward
+---------------------------  ----------------------------  ------------------------------------------------------------------------------
+ ``<Cmd-Ctrl-Right>``         Move Cursor to Window         Switch to Vim or tmux window rightward.
+                              Rightward
+===========================  ============================  ==============================================================================
+
+``<Cmd-Alt-Up/Down/Left/Right>`` window jumpers
+-----------------------------------------------
+
+===========================  ============================  ==============================================================================
+ Key Mapping                  Description                   Notes
+===========================  ============================  ==============================================================================
+ ``<Cmd-Alt-Up>``             Move Cursor to Window         Switch to Vim or tmux window above.
+                              Above
+---------------------------  ----------------------------  ------------------------------------------------------------------------------
+ ``<Cmd-Alt-Down>``           Move Cursor to Window         Switch to Vim or tmux window below.
+                              Below
+---------------------------  ----------------------------  ------------------------------------------------------------------------------
+ ``<Cmd-Alt-Left>``           Move Cursor to Window         Switch to Vim or tmux window leftward.
+                              Leftward
+---------------------------  ----------------------------  ------------------------------------------------------------------------------
+ ``<Cmd-Alt-Right>``          Move Cursor to Window         Switch to Vim or tmux window rightward.
+                              Rightward
+===========================  ============================  ==============================================================================
+
+``<Alt-Numpad>`` window jumpers
+-----------------------------------------------
+
+===========================  ============================  ==============================================================================
+ Key Mapping                  Description                   Notes
+===========================  ============================  ==============================================================================
+ ``<Alt-8>``                  Move Cursor to Window         Switch to Vim or tmux window above.
+                              Above
+---------------------------  ----------------------------  ------------------------------------------------------------------------------
+ ``<Alt-2>``                  Move Cursor to Window         Switch to Vim or tmux window below.
+                              Below
+---------------------------  ----------------------------  ------------------------------------------------------------------------------
+ ``<Alt-4>``                  Move Cursor to Window         Switch to Vim or tmux window leftward.
+                              Leftward
+---------------------------  ----------------------------  ------------------------------------------------------------------------------
+ ``<Alt-6>``                  Move Cursor to Window         Switch to Vim or tmux window rightward.
+                              Rightward
+===========================  ============================  ==============================================================================
+
+MRU window jumper
+-----------------
+
+===========================  ============================  ==============================================================================
+ Key Mapping                  Description                   Notes
+===========================  ============================  ==============================================================================
+ ``<Alt-\>``                  Move Cursor to MRU Window     Toggle focus between current and previously-focused window.
+===========================  ============================  ==============================================================================
+
+Cyclical window jumpers
+-----------------------
+
+===========================  ============================  ==============================================================================
+ Key Mapping                  Description                   Notes
+===========================  ============================  ==============================================================================
+ ``<Ctrl-Shift-Up>``          Move Cursor Counter-          Cycle focus counter-clockwise around windows.
+                              Clockwise
+---------------------------  ----------------------------  ------------------------------------------------------------------------------
+ ``<Ctrl-Shift-Down>``        Move Cursor Clockwise         Cycle focus clockwise around windows.
+===========================  ============================  ==============================================================================
+
+Tab-Related Navigation Commands
+===============================
+
+Tab jumpers
+-----------
+
+===========================  ============================  ==============================================================================
+ Key Mapping                  Description                   Notes
+===========================  ============================  ==============================================================================
+ ``<Alt-Shift-Up>``           Previous Tab                  Switch to previous tab page.
+                                                            - Same as ``gt`` in normal mode.
+                                                            - Same as ``<Ctrl-Alt-PageDown>``.
+---------------------------  ----------------------------  ------------------------------------------------------------------------------
+ ``<Alt-Shift-Down>``         Next Tab                      Switch to next tab page.
+                                                            - Same as ``gT`` in normal mode.
+                                                            - Same as ``<Ctrl-Alt-PageUp>``.
 ===========================  ============================  ==============================================================================
 
 Installation

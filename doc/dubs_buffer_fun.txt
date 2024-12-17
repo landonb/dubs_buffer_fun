@@ -2,14 +2,17 @@
 
 VIM BUFFER DELIGHTS 🍧 Delightful Buffer and Window Features~
 
-BUFFER AND WINDOW COMMANDS		*dubs-buffer-fun*
+BUFFER AND WINDOW COMMANDS		*vim-buffer-delights*
 
-1. About This Plugin			|dubs-bufff-about|
-2. Buffer-Related Commands		|dubs-bufff-buffer-cmds|
-3. Window-Related Commands		|dubs-bufff-window-cmds|
+1. About This Plugin			|vim-buffer-delights-about|
+2. Disable The Plugin			|vim-buffer-delights-disable|
+3. Buffer-Related Commands		|vim-buffer-delights-buffer-cmds|
+4. Window-Related Commands		|vim-buffer-delights-window-cmds|
+5. tmux-Compatible Navigation Commands	|vim-buffer-delights-tmux-cmds|
+6. Tab-Related Commands			|vim-buffer-delights-tab-cmds|
 
 ==============================================================================
-1. About This Plugin			*dubs-bufff-about*
+1. About This Plugin			*vim-buffer-delights-about*
 
 Buffer and window navigation features for Vim.
 
@@ -20,107 +23,156 @@ This plugin defines a few automatic commands:
 
 - Enable `hidden` so buffers are not unloaded when abandoned.
 
-Project page: https://github.com/landonb/dubs_buffer_fun
+Project page: https://github.com/embrace-vim/vim-buffer-delights#🍧
 
 ==============================================================================
-2. Buffer-Related Commands		*dubs-bufff-buffer-cmds*
+1. Disable The Plugin			*vim-buffer-delights-disable*
 
-Walking the buffer chain~
+Disable The Plugin~
+
+If you'd just like to use the `autoload/` functions, or nothing
+at all, set the following global to disable all command maps
+and `plugin/` setup: >
+
+  let g:vim_buffer_delights_disable = 1
+<
+==============================================================================
+3. Buffer-Related Commands		*vim-buffer-delights-buffer-cmds*
+
+Switching MRU buffers~
 
 				*<F2>*
 <F2>			Toggle MRU Buffer. Load the previously-loaded
 			buffer; used to quickly switch between two buffers.
 			
-				*<Ctrl-J>* *<C-J>*
-<Ctrl-J>		Load previous buffer from buffer history list.
-			Use to walk the buffer history backwards.
-
-				*<Ctrl-K>* *<C-K>*
-<Ctrl-K>		Load next buffer from buffer history list.
-			Use to walk the buffer history forwards.
-
-				*<Ctrl-Tab>* *<C-Tab>*
-<Ctrl-Tab>		Walk BufList forward. This walk buffers in the
-			order that they were loaded.
-
-				*<Ctrl-Shift-Tab>* *<C-S-Tab>*
-<Ctrl-Shift-Tab>	Walk BufList backward. This walk buffers in the
-			order that they were loaded.
-
 Find buffers by name~
 
-				*dubs:b*
-:b {filename}		Switch to buffer by (partial) filename.
-
-				*dubs:ls*
-:ls 			List buffer numbers.
-
-__				c_<Shift-F2>* *c_<S-F2>*
-c_<Shift-F2>		Show buffer list and prompt for number or (partial) name.
+				c_<Shift-F2>* *c_<S-F2>*
+<Shift-F2>		Show buffer list and prompt for number or (partial) name.
 			Calls *:ls<CR>:b<Space>*
 
 				*__*
 __			A simple buffer list prompt similar to previous.
 
-				*<Shift-Alt-2>_* *<M-@>_* *<S-M-2>_* *<S-A-2>_* :TMiniBufExplorer :MBEToggle
-<Shift-Alt-2>		Toggle MiniBufExplorer.
+Related Vim commands~
+
+				*embrace:b*
+:b {filename}		Switch to buffer by (partial) filename.
+
+				*embrace:ls*
+:ls 			List buffer numbers.
 
 ==============================================================================
-3. Window-Related Commands		*dubs-bufff-window-cmds*
+4. Window-Related Commands		*vim-buffer-delights-window-cmds*
 
-Custom Dubs Vim Window Command Mappings~
+Window-Related commands~
 
 				*<Ctrl-Shift-Up>* *<C-S-Up>* *<C-W>W*
 <Ctrl-Shift-Up>		Move Cursor to Window Above or Leftward.
+			- Note: `mswin.vim` wires <Shift-Ctrl-Tab>
+			  to same.
 
 				*<Ctrl-Shift-Down>* *<C-S-Down>* *<C-W>w*
 <Ctrl-Shift-Down>	Move Cursor to Window to Right or Below.
+			- Note: `mswin.vim` wires <Ctrl-Tab>
+			  to same.
 
-Common Standard Vim Window Commands~
+				*vv*
+vv			Creates a new vertical-split window, with the
+			same buffer visible in each window.
 
-Note: These commands are standard to Vim; this is just a list
-      of window commands that complement Dubs Vim well.
+Dubs Vim netrw Commands~
 
-				*<Alt-w>c* *<M-w>c*
-<Alt-w>c		Close Window.
+				*<Shift-Alt-@>* *<Shift-Alt-2>* *<Alt-@>* *<S-M-@>_* *<S-M-2>_* *<M-@>_*
+<Shift-Alt-2>		Toggles the `netrw` `:Lexplore` window.
 
-				*<Alt-w>o* *<M-w>o*
-<Alt-w>o		"Only" Window.
 
-				*<Alt-w>p* *<M-w>p*
-<Alt-w>p		Horizontal Split Window.
+==============================================================================
+5. tmux-Compatible Navigation Commands	*vim-buffer-delights-tmux-cmds*
 
-				*<Alt-w>s* *<M-w>s*
-<Alt-w>s		Vertical Split Window.
+<Ctrl-Up/Down/PageUp/PageDown> window jumpers~
 
-				*<Ctrl-w><Shift-L>* *<C-w><S-L>*
-<Ctrl-w><Shift-L>	Move Window to the Left.
+				*<Alt-Up>* *<M-Up>*
+<Alt-Up>		Switch to Vim or tmux window above.
 
-				*<Ctrl-w><Shift-R>* *<C-w><S-R>*
-<Ctrl-w><Shift-R>	Move Window to the Right.
-
-				*<Ctrl-w><Shift-J>* *<C-w><S-J>*
-<Ctrl-w><Shift-J>	Move Window Down.
-
-				*<Ctrl-w><Shift-K>* *<C-w><S-K>*
-<Ctrl-w><Shift-K>	Move Window Up.
-
-Dubs Vim Tab Commands~
+				*<Alt-Down>* *<M-Down>*
+<Alt-Down>		Switch to Vim or tmux window below.
 
 				*<Alt-PageUp>* *<M-PageUp>*
-<Alt-PageUp>		Switch Tabs
-			Changes to the next tab.
-			I [lb] almost never uses tabs in Vim -- the exception being ``:TabMessage``.
-			But if you use tabs, ``<Alt-PageUp>`` and ``<Alt-PageDown>``
-			can be used to iterate through the list of tabs.
+<Alt-PageUp>		Switch to Vim or tmux window leftward.
 
 				*<Alt-PageDown>* *<M-PageDown>*
-<Alt-PageDown>		Switch Tabs
-			The opposite of ``<Alt-PageUp>``; changes to previous tab.
+<Alt-PageDown>		Switch to Vim or tmux window rightward.
 
-Other commands~
+<Cmd-Ctrl-Up/Down/Left/Right> window jumpers~
 
-				*\te*
-\te			Tetris.
+				*<Cmd-Ctrl-Up>* *<T-C-Up>*
+<Cmd-Ctrl-Up>		Switch to Vim or tmux window above.
+
+				*<Cmd-Ctrl-Down>* *<T-C-Down>*
+<Cmd-Ctrl-Down>		Switch to Vim or tmux window below.
+
+				*<Cmd-Ctrl-Left>* *<T-C-Left>*
+<Cmd-Ctrl-Left>		Switch to Vim or tmux window leftward.
+
+				*<Cmd-Ctrl-Right>* *<T-C-Right>*
+<Cmd-Ctrl-Right>	Switch to Vim or tmux window rightward.
+
+<Cmd-Alt-Up/Down/Left/Right> window jumpers~
+
+				*<Cmd-Alt-Up>* *<T-M-Up>*
+<Cmd-Alt-Up>		Switch to Vim or tmux window above.
+
+				*<Cmd-Alt-Down>* *<T-M-Down>*
+<Cmd-Alt-Down>		Switch to Vim or tmux window below.
+
+				*<Cmd-Alt-Left>* *<T-M-Left>*
+<Cmd-Alt-Left>		Switch to Vim or tmux window leftward.
+
+				*<Cmd-Alt-Right>* *<T-M-Right>*
+<Cmd-Alt-Right>		Switch to Vim or tmux window rightward.
+
+<Alt-Numpad/> window jumpers~
+
+				*<Alt-8>* *<M-8>*
+<Alt-8>			Switch to Vim or tmux window above.
+
+				*<Alt-2>* *<M-2>*
+<Alt-2>			Switch to Vim or tmux window below.
+
+				*<Alt-4>* *<M-4>*
+<Alt-4>			Switch to Vim or tmux window leftward.
+
+				*<Alt-6>* *<M-6>*
+<Alt-6>			Switch to Vim or tmux window rightward.
+
+MRU window jumper~
+
+				*<Alt-\>* *<M-\>*
+<Alt-\>			Toggle focus between current and
+			previously-focused window.
+
+Cyclical window jumpers~
+
+				*<Ctrl-Shift-Up>* *<C-S-Up>*
+<Ctrl-Shift-Up>		Cycle focus counter-clockwise around windows.
+
+				*<Ctrl-Shift-Down>* *<C-S-Down>*
+<Ctrl-Shift-Down>	Cycle focus clockwise around windows.
+
+==============================================================================
+6. Tab-Related Navigation Commands	*vim-buffer-delights-tab-cmds*
+
+Tab jumpers~
+
+				*<Alt-Shift-Up>* *<M-S-Up>*
+<Alt-Shift-Up>		Switch to previous tab page.
+			- Same as |gt| in normal mode.
+			- Same as <Ctrl-Alt-PageDown>.
+
+				*<Alt-Shift-Down>* *<M-S-Down>*
+<Alt-Shift-Down>	Switch to next tab page.
+			- Same as |gT| in normal mode.
+			- Same as <Ctrl-Alt-PageUp>.
 
  vim:tw=78:ts=8:ft=help:norl:
