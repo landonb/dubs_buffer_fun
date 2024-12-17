@@ -200,3 +200,61 @@ function! g:embrace#windows#CloseVimHelpWindow() abort
   endwhile
 endfunction
 
+" -------------------------------------------------------------------
+
+function! g:embrace#windows#open_file_adjacent(fpath = '') abort
+  if a:fpath != ''
+    let l:fpath = expand(a:fpath)
+  else
+    " We run expand() twice, because first one returns string,
+    " which might contain tilde (~).
+    let l:fpath = expand(expand("<cfile>"))
+  endif
+
+  if !filereadable(l:fpath)
+    try
+      " If user has vim-goto-file-sh installed, try to expand
+      " shell-syntax environment variables.
+      "   https://github.com/embrace-vim/vim-goto-file-sh#🚕
+      " If fcn. absent, throws /^Vim\%((\a\+)\)\=:E117:/
+      " - E.g., E117: Unknown function: foo#bar#baz
+      let l:fpath = g:embrace#sh_expand#ExpandShellParameters(l:fpath)
+    endtry
+  endif
+
+  if !filereadable(l:fpath)
+    echom "Unreadable or absent file: " .. l:fpath
+
+    return
+  endif
+
+  let l:curr_winnr = winnr()
+
+  let l:found_winnr = g:embrace#windows#FindNextWindowWithNormalBuffer(winnr() + 1)
+
+  " If window is before current window, see if adjacent window on left/top
+  " is normal.
+  let l:adjacent_winnr = l:curr_winnr - 1
+
+  if l:found_winnr < l:curr_winnr
+      \ && g:embrace#windows#IsNormalBuffer(winbufnr(l:adjacent_winnr))
+    let l:found_winnr = l:adjacent_winnr
+  endif
+
+  if l:found_winnr == l:curr_winnr || l:found_winnr == 0
+    " Current buffer is only normal buffer, or none are, so open new split.
+    " MAYBE/2024-12-16: Let user choose horizontal :split instead
+    exe "vsplit " .. fpath
+    " Swap windows, because the new file was opened in the left window.
+    " Then move cursor one window to the right/below.
+    "   :h CTRL-W_x
+    "   :h CTRL-W_w
+    exe "normal! \<C-w>x\<C-w>w"
+  else
+    exe l:found_winnr .. "wincmd w"
+    exe "e " .. fpath
+  endif
+endfunction
+
+" -------------------------------------------------------------------
+
