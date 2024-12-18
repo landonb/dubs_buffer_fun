@@ -2,8 +2,8 @@
 " Author: Landon Bouma <https://tallybark.com/> 
 " Project: https://github.com/embrace-vim/vim-buffer-delights#🍧
 " License: vim-buffer-delights by Landon Bouma is marked with CC0 1.0
-"   Copyright © 2020, 2024 Landon Bouma.
 "   https://creativecommons.org/publicdomain/zero/1.0/
+"   Copyright © 2020, 2024 Landon Bouma.
 
 " -------------------------------------------------------------------
 
