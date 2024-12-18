@@ -4,7 +4,7 @@ VIM BUFFER DELIGHTS 🍧 Delightful Buffer and Window Features~
 
 BUFFER AND WINDOW COMMANDS		*vim-buffer-delights*
 
-1. About This Plugin			|vim-buffer-delights-about|
+1. About this Plugin			|vim-buffer-delights-about|
 2. Disable The Plugin			|vim-buffer-delights-disable|
 3. Buffer-Related Commands		|vim-buffer-delights-buffer-cmds|
 4. Window-Related Commands		|vim-buffer-delights-window-cmds|
@@ -12,11 +12,16 @@ BUFFER AND WINDOW COMMANDS		*vim-buffer-delights*
 6. Tab-Related Commands			|vim-buffer-delights-tab-cmds|
 
 ==============================================================================
-1. About This Plugin			*vim-buffer-delights-about*
+1. About this Plugin			*vim-buffer-delights-about*
+
+About this Plugin~
 
 Buffer and window navigation features for Vim.
 
-This plugin defines a few automatic commands:
+- This plugin defines a bunch of window and buffer
+  navigation commands — see the list below.
+
+This plugin also defines a few automatic commands:
 
 - Automatically jump to last known cursor position when
   opening a file.
@@ -55,6 +60,9 @@ Find buffers by name~
 __			A simple buffer list prompt similar to previous.
 
 Related Vim commands~
+
+These two commands are provided by Vim, not this plugin.
+Just FYI, for comparison.
 
 				*embrace:b*
 :b {filename}		Switch to buffer by (partial) filename.

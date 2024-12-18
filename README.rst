@@ -7,10 +7,13 @@ About This Plugin
 
 Buffer and window navigation features for Vim.
 
-This plugin defines a few automatic commands:
+- This plugin defines a bunch of window and buffer
+  navigation commands — see the list below.
 
-- Automatically jump to last known cursor position when
-  opening a file.
+This plugin also defines a few automatic commands:
+
+- Automatically jump to the last known cursor position
+  when opening a file.
 
 - Enable ``hidden`` so buffers are not unloaded when abandoned.
 
@@ -54,6 +57,8 @@ Find buffers by name
 
 Related Vim commands
 --------------------
+
+These two commands are provided by Vim, not this plugin. Just FYI, for comparison.
 
 ===========================  ============================  ==============================================================================
  Key Mapping                  Description                   Notes
