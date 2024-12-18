@@ -10,14 +10,14 @@
 " USAGE: Unlet var (or nix finish) & press <F9> to reload this plugin.
 " USING: https://github.com/landonb/vim-source-reloader#↩️
 "
-"  silent! unlet g:plugin_dubs_buffer_fun_toggle_between_mru
+"  silent! unlet g:loaded_vim_buffer_delights_toggle_between_mru
 
-if exists('g:plugin_dubs_buffer_fun_toggle_between_mru') || &cp || v:version < 700
+if exists('g:loaded_vim_buffer_delights_toggle_between_mru') || &cp || v:version < 700
 
   finish
 endif
 
-let g:plugin_dubs_buffer_fun_toggle_between_mru = 1
+let g:loaded_vim_buffer_delights_toggle_between_mru = 1
 
 " -------------------------------------------------------------------
 

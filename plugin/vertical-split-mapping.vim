@@ -10,14 +10,14 @@
 " USAGE: Unlet var (or nix finish) & press <F9> to reload this plugin.
 " USING: https://github.com/landonb/vim-source-reloader#↩️
 "
-"  silent! unlet g:plugin_dubs_buffer_fun_vertical_split_mapping
+"  silent! unlet g:loaded_vim_buffer_delights_vertical_split_mapping
 
-if exists('g:plugin_dubs_buffer_fun_vertical_split_mapping') || &cp || v:version < 700
+if exists('g:loaded_vim_buffer_delights_vertical_split_mapping') || &cp || v:version < 700
 
   finish
 endif
 
-let g:plugin_dubs_buffer_fun_vertical_split_mapping = 1
+let g:loaded_vim_buffer_delights_vertical_split_mapping = 1
 
 " -------------------------------------------------------------------
 
