@@ -95,13 +95,19 @@ function! g:embrace#windows#IsNormalBuffer(bufnr) abort
 
   let l:ftype = getbufvar(l:bufnr, "&filetype")
 
+  " SAVVY: Don't avoid user help file window, i.e., if user is
+  " editing their own plugin's help file.
+  " - So not this:
+  "     \ || l:ftype == 'help'
+  " But rely on &modifiable instead (which is 0 for Vim help docs)
+  " to not open files in a *Vim* help window.
+
   if 0
     \ || getbufvar(l:bufnr, '&buftype') != ''
     \ || getbufvar(l:bufnr, "&previewwindow")
     \ || !getbufvar(l:bufnr, "&modifiable")
     \ || !buflisted(l:bufnr)
     \ || l:ftype == 'qf'
-    \ || l:ftype == 'help'
     \ || l:ftype == 'git'
     \ || l:ftype == 'fugitiveblame'
     \ || bufname(l:bufnr) == '-MiniBufExplorer-'
