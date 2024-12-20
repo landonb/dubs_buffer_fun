@@ -23,7 +23,7 @@ let g:loaded_vim_buffer_delights_hide_show_netrw_window = 1
 
 " -------------------------------------------------------------------
 
-if exists('g:vim_buffer_delights_disable') && g:vim_buffer_delights_disable
+if get(g:, 'vim_buffer_delights_disable', 0)
 
   finish
 endif

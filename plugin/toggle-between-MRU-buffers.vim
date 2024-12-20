@@ -23,7 +23,7 @@ let g:loaded_vim_buffer_delights_toggle_between_mru = 1
 
 " -------------------------------------------------------------------
 
-if exists('g:vim_buffer_delights_disable') && g:vim_buffer_delights_disable
+if get(g:, 'vim_buffer_delights_disable', 0)
 
   finish
 endif
