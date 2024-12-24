@@ -10,11 +10,11 @@
 " GUARD: Press <F9> to reload this plugin (or :source it).
 " - Via: https://github.com/landonb/vim-source-reloader#↩️
 
-if expand("%:p") ==# expand("<sfile>:p")
-  unlet g:loaded_vim_buffer_delights_navigation_mappings
+if expand('%:p') ==# expand('<sfile>:p')
+  unlet! g:loaded_vim_buffer_delights_navigation_mappings
 endif
 
-if exists("g:loaded_vim_buffer_delights_navigation_mappings") || &cp
+if exists('g:loaded_vim_buffer_delights_navigation_mappings') || &cp
 
   finish
 endif

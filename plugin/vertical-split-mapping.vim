@@ -10,11 +10,11 @@
 " GUARD: Press <F9> to reload this plugin (or :source it).
 " - Via: https://github.com/landonb/vim-source-reloader#↩️
 
-if expand("%:p") ==# expand("<sfile>:p")
-  unlet g:loaded_vim_buffer_delights_vertical_split_mapping
+if expand('%:p') ==# expand('<sfile>:p')
+  unlet! g:loaded_vim_buffer_delights_vertical_split_mapping
 endif
 
-if exists("g:loaded_vim_buffer_delights_vertical_split_mapping") || &cp
+if exists('g:loaded_vim_buffer_delights_vertical_split_mapping') || &cp
 
   finish
 endif
