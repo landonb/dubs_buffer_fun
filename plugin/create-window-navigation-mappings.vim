@@ -69,13 +69,9 @@ endif
 "     " This is Ctrl-Shift-Down to Next Window
 "     nnoremap <C-S-Down> :call <SID>JumpWindow('w', 0)<CR>
 "     inoremap <C-S-Down> <C-O>:call <SID>JumpWindow('w', 1)<CR>
-"     cnoremap <C-S-Down> <C-C><C-W>w
-"     onoremap <C-S-Down> <C-C><C-W>w
 "     " And this is Ctrl-Shift-Up to Previous Window
 "     nnoremap <C-S-Up> :call <SID>JumpWindow('W', 0)<CR>
 "     inoremap <C-S-Up> <C-O>:call <SID>JumpWindow('W', 1)<CR>
-"     cnoremap <C-S-Up> <C-C><C-W>W
-"     onoremap <C-S-Up> <C-C><C-W>W
 "   endfunction
 "
 " And here's the simpler, tmux-aware functionality:
@@ -296,17 +292,13 @@ function! s:wire_keys_jump_to_window_progressively()
 
   " This is Alt-PageDown to Next Tab Page
   " - ALTLY: You can also gT in Normal mode.
-  noremap <M-S-Down> :tabn<CR>
+  nnoremap <M-S-Down> :tabn<CR>
   inoremap <M-S-Down> <C-O>:tabn<CR>
-  cnoremap <M-S-Down> <C-C>:tabn<CR>
-  onoremap <M-S-Down> <C-C>:tabn<CR>
 
   " This is Alt-PageUp to Previous Tab Page
   " - ALTLY: You can also gT in Normal mode.
-  noremap <M-S-Up> :tabN<CR>
+  nnoremap <M-S-Up> :tabN<CR>
   inoremap <M-S-Up> <C-O>:tabN<CR>
-  cnoremap <M-S-Up> <C-C>:tabN<CR>
-  onoremap <M-S-Up> <C-C>:tabN<CR>
 
 endfunction
 
