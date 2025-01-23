@@ -278,11 +278,15 @@ function! s:wire_keys_jump_to_window_directionally()
 
   " Ctrl-Shift-Up/-Down cycle focus counter-clockwise/closewise around panes.
 
-  nnoremap <silent> <C-S-Up> :TmuxNavigatePrevious<cr>
-  inoremap <silent> <C-S-Up> <C-O>:TmuxNavigatePrevious<cr>
+  nnoremap <silent> <C-S-Up> :if exists('*TmuxNavigatePrevious') \|
+   \ exec 'TmuxNavigatePrevious' \| else \| wincmd W \| endif<CR>
+  inoremap <silent> <C-S-Up> <C-O>:if exists('*TmuxNavigatePrevious') \|
+    \ exec 'TmuxNavigatePrevious' \| else \| wincmd W \| endif<CR>
 
-  nnoremap <silent> <C-S-Down> :TmuxNavigateNext<cr>
-  inoremap <silent> <C-S-Down> <C-O>:TmuxNavigateNext<cr>
+  nnoremap <silent> <C-S-Down> :if exists('*TmuxNavigateNext') \|
+    \ exec 'TmuxNavigateNext' \| else \| wincmd w \| endif<CR>
+  inoremap <silent> <C-S-Down> <C-O>:if exists('*TmuxNavigateNext') \|
+    \ exec 'TmuxNavigateNext' \| else \| wincmd w \| endif<CR>
 
 endfunction
 
