@@ -47,6 +47,11 @@ endif
 
 " SYNC_ME: Dubs Vim's <M-????> mappings are spread across plugins. [M-S-2]
 
-nmap <M-@> :Lexplore<CR>:au WinLeave <buffer> quit<CR>
-imap <M-@> <C-O>:Lexplore<CR>:au WinLeave <buffer> quit<CR>
+if has('macunix')
+  nnoremap € :Lexplore<CR>:au WinLeave <buffer> quit<CR>
+  inoremap € <C-O>:Lexplore<CR>:au WinLeave <buffer> quit<CR>
+else
+  noremap <M-@> :Lexplore<CR>:au WinLeave <buffer> quit<CR>
+  inoremap <M-@> <C-O>:Lexplore<CR>:au WinLeave <buffer> quit<CR>
+endif
 
