@@ -43,7 +43,7 @@ endif
 " - MAYBE/2017-11-02: Add, e.g., Alt-Shift-F2 binding to always close netrw
 "   window (and resize remaining windows equally, ignoring project tray).
 "   - MAYBE: Use fullscreen plug:
-"       ~/.vim/pack/landonb/start/dubs_buffer_fun/plugin/window-resize-fullscreen-toggle.vim
+"       ~/.kit/nvim/landonb/start/dubs_buffer_fun/plugin/window-resize-fullscreen-toggle.vim
 
 " SYNC_ME: Dubs Vim's <M-????> mappings are spread across plugins. [M-S-2]
 
