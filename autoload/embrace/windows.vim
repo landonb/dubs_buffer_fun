@@ -85,6 +85,28 @@
 "       was not bwipe'd, e.g., bufexists(a:bufnr). But we don't
 "       cache buffer numbers, and !bugexists won't be the case for
 "       any buffer loaded into an existing window.
+"
+"   - :netrw
+"
+"     - The :netrw facility uses seemingly magical buffers that
+"       identify as normal buffers, and also uses hidden buffers
+"       you won't see (e.g., you might `:e some/dir/`, open a file,
+"       run :ls and see that 'some/dir/' is bufnr() '45', but then
+"       after running `:b 45` to open :netrw again, an `echo bufnr()`
+"       shows '46', not '45'...
+"       - Fortunately there is one tell: the buffer name is a directory,
+"         e.g,
+"
+"           isdirectory(bufname(bufnr()))
+"       
+"       But note IsNormalBuffer() doesn't check if a :netrw window:
+"       - It assumes that you're likely calling this function to see
+"         where it's "safe" to open a file for editing, and generally
+"         a :netrw window is fine. E.g., if you're editing a file, open
+"         :netrw in that window, and open a file, you're still in that
+"         same window. It's not like the project tray, a help window,
+"         or the quickfix window; a :netrw window is really nothing
+"         special.
 
 function! g:embrace#windows#IsNormalBuffer(bufnr) abort
   " Note that using special buffers (see :bufname for list)
