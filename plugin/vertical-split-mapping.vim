@@ -1,5 +1,5 @@
 " vim:tw=0:ts=2:sw=2:et:norl:
-" Author: Landon Bouma <https://tallybark.com/> 
+" Author: Landon Bouma <https://tallybark.com/>
 " Project: https://github.com/embrace-vim/vim-buffer-delights#🍧
 " License: vim-buffer-delights by Landon Bouma is marked with CC0 1.0
 "   https://creativecommons.org/publicdomain/zero/1.0/
