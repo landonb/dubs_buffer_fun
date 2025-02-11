@@ -82,8 +82,8 @@ endfunction
 " EXPLAIN/2017-03-28: function defined as s:SimplBuffrListr,
 "                                  not as <SID>SimplBuffrListr,
 "                                  so how does this work?
-map <silent> __ :call <SID>SimplBuffrListr()<CR>
-" NOTE to the wise: tabs? tabs?! who needs tabs!!?
+nnoremap <silent> __ :call s:SimplBuffrListr()<CR>
+
 "      buflists? buflists?! who needs buflists!!?
 "      serlussly, pound a double-underscore every
 "      once 'n a while, but keep yer doc names
