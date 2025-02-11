@@ -37,6 +37,8 @@ endif
 " Tip from http://eseth.org/2007/vim-buffers.html
 " Show buffer list and prompt for buffer number or
 " (partial) name.
+" - REFER: See also :ls! to also list unlisted buffers.
+" - CALSO: `:Telescope buffers`, and FZF's `:Buffers`.
 nnoremap <S-F2> :ls<CR>:b<Space>
 " Caveat: Resets to normal mode:
 inoremap <S-F2> <ESC>:ls<CR>:b<Space>
