@@ -30,6 +30,21 @@ endif
 
 " -------------------------------------------------------------------
 
+" REFER/2025-02-10: Consider instead:
+" - Using Telescope:
+"     :Telescope buffers
+"   https://github.com/nvim-telescope/telescope.nvim
+" - Or using junegunn's FZF:
+"     :Buffers
+"   https://github.com/junegunn/fzf.vim
+
+if get(g:, 'vim_buffer_delights_disable_fzf_buffers', 0)
+
+  finish
+endif
+
+" -------------------------------------------------------------------
+
 " --------------------------------------------------------
 " List Buffers and Prompt for Buffer Number — The Easy Way
 " --------------------------------------------------------
