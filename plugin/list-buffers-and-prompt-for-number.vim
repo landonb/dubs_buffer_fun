@@ -60,6 +60,7 @@ inoremap <S-F2> <ESC>:ls<CR>:b<Space>
 " - So <__> and <S-F2> are effectively redundant.
 "   - MAYBE/2024-03-04: Nix one of these.
 
+" GROUP: #vim_buffer_picker
 function! s:SimplBuffrListr()
   " Show all buffers, one per line, in the
   " command-line window (which expands upward
