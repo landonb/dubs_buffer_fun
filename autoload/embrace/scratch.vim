@@ -79,7 +79,7 @@ endfunction
 "   - But not when --noplugin — I think it's titlestring=%t that does it
 "     (Vim returns [Scratch] for the "File name (tail)".
 "        |statusline| |titlestring|
-"      ~/.kit/nvim/landonb/start/vim-title-bar-time-of-day/plugin/title_bar_time_of_day.vim
+"      ~/.kit/nvim/landonb/vim-title-bar-time-of-day/plugin/title_bar_time_of_day.vim
 " ALTLY:
 "   " :wincmd b
 "   "   \ | below new
