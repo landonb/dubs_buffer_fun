@@ -204,20 +204,6 @@ function! s:wire_keys_jump_to_window_directionally()
 
   " +++
 
-  nnoremap <silent> <T-M-Left> :TmuxNavigateLeft<cr>
-  inoremap <silent> <T-M-Left> <C-O>:TmuxNavigateLeft<cr>
-
-  nnoremap <silent> <T-M-Up> :TmuxNavigateUp<cr>
-  inoremap <silent> <T-M-Up> <C-O>:TmuxNavigateUp<cr>
-
-  nnoremap <silent> <T-M-Down> :TmuxNavigateDown<cr>
-  inoremap <silent> <T-M-Down> <C-O>:TmuxNavigateDown<cr>
-
-  nnoremap <silent> <T-M-Right> :TmuxNavigateRight<cr>
-  inoremap <silent> <T-M-Right> <C-O>:TmuxNavigateRight<cr>
-
-  " +++
-
   " <Command-Alt-Left|Up|Down|Right> (and works regardless of meta-key
   " enablement, i.e., if macOS Option key emits literal chars. or not).
 
