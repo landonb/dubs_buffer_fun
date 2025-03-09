@@ -1,6 +1,6 @@
 *dubs_buffer_fun.txt*	For Vim version 7.4.	Last change: 2015 Jan 23
 
-VIM BUFFER DELIGHTS 🍧 Delightful Buffer and Window Features~
+VIM BUFFER DELIGHTS 🍧 Delightful Buffer and Window Features ~
 
 BUFFER AND WINDOW COMMANDS		*vim-buffer-delights*
 
@@ -33,7 +33,7 @@ Project page: https://github.com/embrace-vim/vim-buffer-delights#🍧
 ==============================================================================
 1. Disable The Plugin			*vim-buffer-delights-disable*
 
-Disable The Plugin~
+Disable the Plugin ~
 
 If you'd just like to use the `autoload/` functions, or nothing
 at all, set the following global to disable all command maps
@@ -44,13 +44,13 @@ and `plugin/` setup: >
 ==============================================================================
 3. Buffer-Related Commands		*vim-buffer-delights-buffer-cmds*
 
-Switching MRU buffers~
+Switching MRU buffers ~
 
 				*<F2>*
 <F2>			Toggle MRU Buffer. Load the previously-loaded
 			buffer; used to quickly switch between two buffers.
 			
-Find buffers by name~
+Find buffers by name ~
 
 				c_<Shift-F2>* *c_<S-F2>*
 <Shift-F2>		Show buffer list and prompt for number or (partial) name.
@@ -59,7 +59,7 @@ Find buffers by name~
 				*__*
 __			A simple buffer list prompt similar to previous.
 
-Related Vim commands~
+Related Vim commands ~
 
 These two commands are provided by Vim, not this plugin.
 Just FYI, for comparison.
@@ -73,7 +73,7 @@ Just FYI, for comparison.
 ==============================================================================
 4. Window-Related Commands		*vim-buffer-delights-window-cmds*
 
-Window-Related commands~
+Window-Related commands ~
 
 				*vv*
 vv			Creates a new vertical-split window, with the
@@ -81,7 +81,7 @@ vv			Creates a new vertical-split window, with the
 
 See next section for window navigation commands.
 
-Dubs Vim netrw Commands~
+Dubs Vim netrw Commands ~
 
 				*<Shift-Alt-@>* *<Shift-Alt-2>* *<Alt-@>* *<S-M-@>_* *<S-M-2>_* *<M-@>_*
 <Shift-Alt-2>		Toggles the `netrw` `:Lexplore` window.
@@ -90,7 +90,7 @@ Dubs Vim netrw Commands~
 ==============================================================================
 5. tmux-Compatible Navigation Commands	*vim-buffer-delights-tmux-cmds*
 
-<Ctrl-Up/Down/PageUp/PageDown> window jumpers~
+<Ctrl-Up/Down/PageUp/PageDown> window jumpers ~
 
 				*<Alt-Up>* *<M-Up>*
 <Alt-Up>		Switch to Vim or tmux window above.
@@ -104,7 +104,7 @@ Dubs Vim netrw Commands~
 				*<Alt-PageDown>* *<M-PageDown>*
 <Alt-PageDown>		Switch to Vim or tmux window rightward.
 
-<Cmd-Ctrl-Up/Down/Left/Right> window jumpers~
+<Cmd-Ctrl-Up/Down/Left/Right> window jumpers ~
 
 				*<Cmd-Ctrl-Up>* *<T-C-Up>*
 <Cmd-Ctrl-Up>		Switch to Vim or tmux window above.
@@ -118,7 +118,7 @@ Dubs Vim netrw Commands~
 				*<Cmd-Ctrl-Right>* *<T-C-Right>*
 <Cmd-Ctrl-Right>	Switch to Vim or tmux window rightward.
 
-<Cmd-Alt-Up/Down/Left/Right> window jumpers~
+<Cmd-Alt-Up/Down/Left/Right> window jumpers ~
 
 				*<Cmd-Alt-Up>* *<T-M-Up>*
 <Cmd-Alt-Up>		Switch to Vim or tmux window above.
@@ -132,7 +132,7 @@ Dubs Vim netrw Commands~
 				*<Cmd-Alt-Right>* *<T-M-Right>*
 <Cmd-Alt-Right>		Switch to Vim or tmux window rightward.
 
-<Alt-Numpad/> window jumpers~
+<Alt-Numpad/> window jumpers ~
 
 				*<Alt-8>* *<M-8>*
 <Alt-8>			Switch to Vim or tmux window above.
@@ -146,13 +146,13 @@ Dubs Vim netrw Commands~
 				*<Alt-6>* *<M-6>*
 <Alt-6>			Switch to Vim or tmux window rightward.
 
-MRU window jumper~
+MRU window jumper ~
 
 				*<Alt-\>* *<M-\>*
 <Alt-\>			Toggle focus between current and
 			previously-focused window.
 
-Cyclical window jumpers~
+Cyclical window jumpers ~
 
 				*<Ctrl-Shift-Up>* *<C-S-Up>*
 <Ctrl-Shift-Up>		Move focus counter-clockwise around windows.
@@ -163,7 +163,7 @@ Cyclical window jumpers~
 ==============================================================================
 6. Tab-Related Navigation Commands	*vim-buffer-delights-tab-cmds*
 
-Tab jumpers~
+Tab jumpers ~
 
 				*<Alt-Shift-Up>* *<M-S-Up>*
 <Alt-Shift-Up>		Switch to previous tab page.
