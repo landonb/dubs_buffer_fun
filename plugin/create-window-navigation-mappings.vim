@@ -242,6 +242,9 @@ function! s:wire_keys_jump_to_window_directionally()
   nnoremap <silent> <M-\> :TmuxNavigateLast<cr>
   inoremap <silent> <M-\> <C-O>:TmuxNavigateLast<cr>
 
+  nnoremap <silent> « :TmuxNavigateLast<cr>
+  inoremap <silent> « <C-O>:TmuxNavigateLast<cr>
+
   " Ctrl-Shift-Up/-Down cycle focus counter-clockwise/closewise around panes.
 
   nnoremap <silent> <C-S-Up> :if exists('*TmuxNavigatePrevious') \|
