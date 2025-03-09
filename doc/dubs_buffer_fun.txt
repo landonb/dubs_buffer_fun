@@ -75,19 +75,11 @@ Just FYI, for comparison.
 
 Window-Related commands~
 
-				*<Ctrl-Shift-Up>* *<C-S-Up>* *<C-W>W*
-<Ctrl-Shift-Up>		Move Cursor to Window Above or Leftward.
-			- Note: `mswin.vim` wires <Shift-Ctrl-Tab>
-			  to same.
-
-				*<Ctrl-Shift-Down>* *<C-S-Down>* *<C-W>w*
-<Ctrl-Shift-Down>	Move Cursor to Window to Right or Below.
-			- Note: `mswin.vim` wires <Ctrl-Tab>
-			  to same.
-
 				*vv*
 vv			Creates a new vertical-split window, with the
 			same buffer visible in each window.
+
+See next section for window navigation commands.
 
 Dubs Vim netrw Commands~
 
@@ -163,10 +155,10 @@ MRU window jumper~
 Cyclical window jumpers~
 
 				*<Ctrl-Shift-Up>* *<C-S-Up>*
-<Ctrl-Shift-Up>		Cycle focus counter-clockwise around windows.
+<Ctrl-Shift-Up>		Move focus counter-clockwise around windows.
 
 				*<Ctrl-Shift-Down>* *<C-S-Down>*
-<Ctrl-Shift-Down>	Cycle focus clockwise around windows.
+<Ctrl-Shift-Down>	Move focus clockwise around windows.
 
 ==============================================================================
 6. Tab-Related Navigation Commands	*vim-buffer-delights-tab-cmds*
