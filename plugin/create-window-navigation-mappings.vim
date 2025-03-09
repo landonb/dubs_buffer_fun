@@ -123,8 +123,8 @@ function! s:wire_keys_jump_to_window_directionally()
   " (Where 'Command' refers to macOS 'Command' key,
   "  Windows 'Start' key, or Linux 'Super_L' or 'Mod4'
   "  key, what is all essentially the same logical key,
-  "  i.e., the meta key that's not the Ctrl, Alt, or
-  "  Option key, that is unless you're on some crazy
+  "  i.e., the modifier key that's not the Ctrl, Alt, or
+  "  Option key, that is unless you're on some strange
   "  nerdy keyboard.)
   "
   " - Note that these Ctrl-Command-Arrow combos do the same operation
@@ -137,7 +137,7 @@ function! s:wire_keys_jump_to_window_directionally()
   " 2021-01-30: I'm surprised it only took me 10 years to add
   " Super_L/Command key mappings to Vim... it definately adds
   " more breathing room to what was a crowed arena of combos
-  " using the few available meta keys and arrow keys!
+  " using the few available modifier keys and arrow keys!
   "
   " - If you read on Stack Overflow, most answers strongly
   "   suggest *not* overriding the OS key, because of how
@@ -146,14 +146,15 @@ function! s:wire_keys_jump_to_window_directionally()
   "   But if you've done your legwork, you'll be fine.
   "
   "   - On macOS, you can use the builtin Keyboard Settings
-  "     as well as Karabiner-Elements to remap everything
-  "     how you like -- I went so far as to remap all the
-  "     common Command combos to Control (like Ctrl-C/-V/-X
-  "     and even Ctrl-S/-W/-Q), and then I swapped Option and
-  "     Command, so my macOS keyboard experience is almost
-  "     identical to my Linux experience!
+  "     as well as Hammerspoon (or Karabiner-Elements, or
+  "     skhdrc) to remap everything how you like — I went so
+  "     far as to remap all the common Command combos to
+  "     Control (like Ctrl-C/-V/-X and even Ctrl-S/-W/-Q),
+  "     and then I swapped Option and Command, so my macOS
+  "     keyboard experience is almost identical to my Linux
+  "     experience!
   "
-  "   - On Linux, not many applications use the Super_L aka
+  "   - On MATE, not many applications use the Super_L aka
   "     <Mod4> key. Many applications use Alt key shortcuts,
   "     e.g., Alt-f to show file menu, and then pressing
   "     another key to choose a menu option.
@@ -165,17 +166,15 @@ function! s:wire_keys_jump_to_window_directionally()
   "   - So go wild! Make use of all the keys your keyboard
   "     gives you.
   "
-  "   - I like to use the various shift, meta and arrow key
+  "   - I like to use the various modifier and arrow key
   "     combinations to perform cursor and window motions.
   "     It helps me bounce around text files and application
-  "     windows quickly and painlessly.
+  "     windows quickly and easily.
 
-  " HINT: I figured out the <T-C-Left> and other <shortcuts> to use
-  "       using Ctrl-q (the Ctrl-v alternative; see :help i_CTRL-V).
-  "
-  "       Press <C-q> and then type the meta+key command you want to
-  "       use, and if it contains special characters, they'll be
-  "       generated. Use the <C-q> output for the map <shortcut>.
+  " HINT: You can print the combo seq using i_CTRL-V, which
+  " maybe you've mapped from Ctrl-q if you use Ctrl-v to
+  " paste. E.g., if you press <Ctrl-q> then <Alt-a>, Neo(vim)
+  " inserts "<M-a>". (See :help i_CTRL-V).
 
   nnoremap <silent> <T-C-Left> :TmuxNavigateLeft<cr>
   inoremap <silent> <T-C-Left> <C-O>:TmuxNavigateLeft<cr>
@@ -189,7 +188,7 @@ function! s:wire_keys_jump_to_window_directionally()
   nnoremap <silent> <T-C-Right> :TmuxNavigateRight<cr>
   inoremap <silent> <T-C-Right> <C-O>:TmuxNavigateRight<cr>
 
-  " +++
+  " <Ctrl-Command-Left|Up|Down|Right> (author likes these the best):
 
   nnoremap <silent> <D-C-Left> :TmuxNavigateLeft<cr>
   inoremap <silent> <D-C-Left> <C-O>:TmuxNavigateLeft<cr>
@@ -203,17 +202,7 @@ function! s:wire_keys_jump_to_window_directionally()
   nnoremap <silent> <D-C-Right> :TmuxNavigateRight<cr>
   inoremap <silent> <D-C-Right> <C-O>:TmuxNavigateRight<cr>
 
-  " +++++++
-
-  " 2021-02-01: Now I'm not so sure, I think Ctrl-Command is
-  " easier to press, but Command-Alt at least uses the Alt
-  " key like the other Alt-{motion} pane jumpers.
-  "
-  " - Since I only started using these maps, and since I
-  "   didn't have anything mapped to Command-Alt combo,
-  "   I'm adding duplicate maps here.
-  "
-  " LATER/2021-02-01: DECIDE: Remove unused pane jumping maps.
+  " +++
 
   nnoremap <silent> <T-M-Left> :TmuxNavigateLeft<cr>
   inoremap <silent> <T-M-Left> <C-O>:TmuxNavigateLeft<cr>
@@ -229,6 +218,9 @@ function! s:wire_keys_jump_to_window_directionally()
 
   " +++
 
+  " <Command-Alt-Left|Up|Down|Right> (and works regardless of meta-key
+  " enablement, i.e., if macOS Option key emits literal chars. or not).
+
   nnoremap <silent> <D-M-Left> :TmuxNavigateLeft<cr>
   inoremap <silent> <D-M-Left> <C-O>:TmuxNavigateLeft<cr>
 
@@ -241,7 +233,7 @@ function! s:wire_keys_jump_to_window_directionally()
   nnoremap <silent> <D-M-Right> :TmuxNavigateRight<cr>
   inoremap <silent> <D-M-Right> <C-O>:TmuxNavigateRight<cr>
 
-  " +++++++
+  " +++
 
   " 2021-02-01: Hang on a tick, what about the Numpad?
   "
@@ -265,8 +257,6 @@ function! s:wire_keys_jump_to_window_directionally()
 
   nnoremap <silent> <M-6> :TmuxNavigateRight<cr>
   inoremap <silent> <M-6> <C-O>:TmuxNavigateRight<cr>
-
-  " +++
 
   " ++++++++++++++++++++++
 

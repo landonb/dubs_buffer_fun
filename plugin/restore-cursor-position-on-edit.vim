@@ -30,6 +30,10 @@ endif
 
 " -------------------------------------------------------------------
 
+" SAVVY/2025-03-08: Note that LazyVim plumbs this feature (though
+" a cursory search for rg "\bg\`" and `rg "\bg'"` didn't clue me
+" in as to how LazyVim plumbs it).
+
 " ------------------------------------------------------
 " Jump to Last Known Cursor Position
 " ------------------------------------------------------

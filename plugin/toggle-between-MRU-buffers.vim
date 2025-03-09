@@ -71,6 +71,7 @@ endfunction
 
 " Enable hidden, in case user is viewing modified buffer. This
 " lets us hide modified buffer without Vim emitting a warning.
+" - Note that Neovim default-enables &hidden.
 set hidden
 
 nnoremap <F2> :call <SID>Switch_MRU_Safe()<CR>
