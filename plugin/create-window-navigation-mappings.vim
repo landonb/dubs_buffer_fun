@@ -176,17 +176,7 @@ function! s:wire_keys_jump_to_window_directionally()
   " paste. E.g., if you press <Ctrl-q> then <Alt-a>, Neo(vim)
   " inserts "<M-a>". (See :help i_CTRL-V).
 
-  nnoremap <silent> <T-C-Left> :TmuxNavigateLeft<cr>
-  inoremap <silent> <T-C-Left> <C-O>:TmuxNavigateLeft<cr>
-
-  nnoremap <silent> <T-C-Up> :TmuxNavigateUp<cr>
-  inoremap <silent> <T-C-Up> <C-O>:TmuxNavigateUp<cr>
-
-  nnoremap <silent> <T-C-Down> :TmuxNavigateDown<cr>
-  inoremap <silent> <T-C-Down> <C-O>:TmuxNavigateDown<cr>
-
-  nnoremap <silent> <T-C-Right> :TmuxNavigateRight<cr>
-  inoremap <silent> <T-C-Right> <C-O>:TmuxNavigateRight<cr>
+  " +++
 
   " <Ctrl-Command-Left|Up|Down|Right> (author likes these the best):
 
@@ -206,18 +196,18 @@ function! s:wire_keys_jump_to_window_directionally()
 
   " <Command-Alt-Left|Up|Down|Right> (and works regardless of meta-key
   " enablement, i.e., if macOS Option key emits literal chars. or not).
-
-  nnoremap <silent> <D-M-Left> :TmuxNavigateLeft<cr>
-  inoremap <silent> <D-M-Left> <C-O>:TmuxNavigateLeft<cr>
-
-  nnoremap <silent> <D-M-Up> :TmuxNavigateUp<cr>
-  inoremap <silent> <D-M-Up> <C-O>:TmuxNavigateUp<cr>
-
-  nnoremap <silent> <D-M-Down> :TmuxNavigateDown<cr>
-  inoremap <silent> <D-M-Down> <C-O>:TmuxNavigateDown<cr>
-
-  nnoremap <silent> <D-M-Right> :TmuxNavigateRight<cr>
-  inoremap <silent> <D-M-Right> <C-O>:TmuxNavigateRight<cr>
+  ""
+  "   nnoremap <silent> <D-M-Left> :TmuxNavigateLeft<cr>
+  "   inoremap <silent> <D-M-Left> <C-O>:TmuxNavigateLeft<cr>
+  "
+  "   nnoremap <silent> <D-M-Up> :TmuxNavigateUp<cr>
+  "   inoremap <silent> <D-M-Up> <C-O>:TmuxNavigateUp<cr>
+  "
+  "   nnoremap <silent> <D-M-Down> :TmuxNavigateDown<cr>
+  "   inoremap <silent> <D-M-Down> <C-O>:TmuxNavigateDown<cr>
+  "
+  "   nnoremap <silent> <D-M-Right> :TmuxNavigateRight<cr>
+  "   inoremap <silent> <D-M-Right> <C-O>:TmuxNavigateRight<cr>
 
   " +++
 
