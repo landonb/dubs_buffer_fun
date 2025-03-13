@@ -4,6 +4,7 @@
 " License: GPLv3
 " Copyright © 2024 Landon Bouma.
 
+" USAGE: Call manually when debugging. Plugin under test calls AppendScratch.
 function! g:embrace#scratch#CreateLogWindow() abort
   if get(s:, 'bufnr', 0) > 0
     let l:logwin = bufwinnr(s:bufnr)
