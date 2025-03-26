@@ -124,6 +124,13 @@ function! g:embrace#windows#IsNormalBuffer(bufnr) abort
   " But rely on &modifiable instead (which is 0 for Vim help docs)
   " to not open files in a *Vim* help window.
 
+  if l:ftype == 'snacks_dashboard'
+    " Make an exception for the dashboard (so that, e.g., gvim-open-kindness
+    " opens to it, or opening Quickfix result, Project tray entry, etc.).
+
+    return 1
+  endif
+
   if 0
     \ || getbufvar(l:bufnr, '&buftype') != ''
     \ || getbufvar(l:bufnr, "&previewwindow")
